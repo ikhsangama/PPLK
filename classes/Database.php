@@ -1,6 +1,6 @@
 <?php
 
-/**
+/** mengatur CRUD database secara langsung
  *
  */
 class Database
@@ -35,33 +35,42 @@ class Database
     // Metode implode untuk menggabungkan semua array $kolom, lalu mengeluarkan semua $kolom dan $valuenya
     $kolom = implode(",", array_keys($values));
     //.Metode implode untuk mengeluarkan semua $kolom dan $valuenya
-
     //mengambil semua values
     $valueArrays = array();
     $i = 0;
     foreach ($values as $key => $value) {
       if (is_int($values))
       {
-        $valueArrays[$i] = $value;
+        $valueArrays[$i] = $this->escape($value);
       }
       else
       {
-        $valueArrays[$i] = "'". $value."'";
+        $valueArrays[$i] = "'". $this->escape($value)."'";
       }
       $i++;
     }
     //.mengambil semua values
-    $value = implode (",", $valueArrays);
-
-    $query = "INSERT INTO $table ($kolom) VALUES ($value)";
-
+    $values = implode (",", $valueArrays);
+    // $query = "INSERT INTO perusahaan (nama, password) VALUES ("ikhsan", 123)";
+    $query = "INSERT INTO $table ($kolom) VALUES ($values)";
     // die($query); //mengecek kueri sebelum dieksekusi dan dimasukkan ke myskl
-
-    if ($this->mysqli->query($query)) return true;
-    else return false;
+    return $this->run($query, "masalah saat memasukkan data");
   }
 
+  /** Menjalankan kuery
+  */
+  public function run($query, $msg)
+  {
+    if ($this->mysqli->query($query)) return true;
+    else die($msg);
+  }
 
+/** ESCAPE INPUT untuk menghindari skl injection
+*/
+  public function escape($name)
+  {
+    return $this->mysqli->real_escape_string($name);
+  }
 
 }
 

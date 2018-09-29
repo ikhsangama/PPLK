@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2018 at 01:53 AM
+-- Generation Time: Sep 29, 2018 at 03:57 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -103,7 +103,7 @@ CREATE TABLE `pencaker` (
 
 CREATE TABLE `perusahaan` (
   `idperusahaan` int(11) NOT NULL,
-  `nama` int(11) NOT NULL,
+  `nama` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
   `nama_pemilik` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
@@ -118,8 +118,11 @@ CREATE TABLE `perusahaan` (
 --
 
 INSERT INTO `perusahaan` (`idperusahaan`, `nama`, `password`, `nama_pemilik`, `alamat`, `kota`, `email`, `no_telp`, `tgl_daftar`) VALUES
-(1, 0, '$2y$10$RM8Ioy3FQlVyVxasBkpZvu20zZmaBxSlBL1u2aBYksC', 'asd', 'ad', 'ko', 'em', 'no', '2018-09-29 03:49:15'),
-(2, 0, '$2y$10$w4c.IMdAKH/Gf20SIidv5ORDLFn/4tUDMCHnT4vdT2G', 'namapw', 'alamatw', 'kotaw', 'emailw', '111', '2018-09-29 03:50:40');
+(1, '0', '$2y$10$RM8Ioy3FQlVyVxasBkpZvu20zZmaBxSlBL1u2aBYksC', 'asd', 'ad', 'ko', 'em', 'no', '2018-09-29 03:49:15'),
+(2, '0', '$2y$10$w4c.IMdAKH/Gf20SIidv5ORDLFn/4tUDMCHnT4vdT2G', 'namapw', 'alamatw', 'kotaw', 'emailw', '111', '2018-09-29 03:50:40'),
+(3, 'ee', '$2y$10$d7O55eYFljYXsCjrP2kiw.X.tvqEKO4gBmpW.H6h0YZ', 'e', 'e', 'e', 'e', 'e', '2018-09-29 08:23:38'),
+(4, 'ee', '$2y$10$PN//nCG/4.ixP/oPmyaTWefqFb9e5K3eLkbDJOyavP2', 'e', 'e', 'e', 'e', 'e', '2018-09-29 08:55:02'),
+(5, 'a', '$2y$10$LaJXvOOhIFSlCW7t2uWAmuWvyavUWwUfRRAKqIXjijK', 'a', 'a', 'a', 'a', 'a', '2018-09-29 08:55:11');
 
 -- --------------------------------------------------------
 
@@ -253,7 +256,7 @@ ALTER TABLE `pencaker`
 -- AUTO_INCREMENT for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
-  MODIFY `idperusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `idperusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `riwayat_pekerjaan`
