@@ -26,17 +26,18 @@ class Validation
             break;
 
           case 'min':
-          if(trim(Input::get($item)) < $rule_value)
+          // die(strlen(Input::get($item)) < $rule_value);
+          if(strlen(Input::get($item)) < $rule_value)
           {
             $this->addError ("$item minimal $rule_value karakter");
           }
             break;
 
           case 'max':
-          if(trim(Input::get($item)) > $rule_value)
+          if(strlen(Input::get($item)) > $rule_value)
           {
             $this->addError ("$item maksimal $rule_value karakter");
-          }
+          } break;
 
           default:
             // code...

@@ -5,6 +5,8 @@ require_once "core/Init.php";
 // if(isset($_POST['submit'])){
 //   echo "tombol submit sudah ditekan";
 // }
+$errors = array();
+
 if (Input::get('submit'))
 {
   // 1. Memanggil obj validasi
@@ -14,12 +16,12 @@ if (Input::get('submit'))
     'nama' => array(
       'required' => true,
       'min'=> 3,
-      'max'=>50,
+      'max'=>15,
     ),
     'password' => array(
       'required' => true,
       'min' => 3,
-    )
+    ),
   ));
 // die("a". $validation->getPassed());
   // 3. lolos validasi
@@ -37,7 +39,7 @@ if (Input::get('submit'))
     ));
   } else
   {
-    print_r($validation->getErrors());
+    $errors = $validation->getErrors();
   }
 }
 
@@ -64,8 +66,15 @@ require_once "template/header.php";
   <input type="text" name="no_telp" value=""><br>
 
   <input type="submit" name="submit" value="Daftar Sekarang">
-
-
+<!--MENAMPILKAN ERROR  -->
+<?php if(!empty($errors)) { ?>
+  <div id="errors">
+    <?php foreach($errors as $error){ ?>
+      <li><?php echo $error ?></li>
+    <?php } ?>
+  </div>
+<?php } ?>
+<!--.MENAMPILKAN ERROR  -->
 </form>
 
 <?php
