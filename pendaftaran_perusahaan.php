@@ -37,6 +37,16 @@ if (Input::get('submit'))
       'email' => Input::get('email'),
       'no_telp' => Input::get('no_telp'),
     ));
+
+
+    // MENYIMPAN SESSION
+    // Session::setNamaSession('variabel / key', value);
+    Session::setNamaSession('perusahaan', Input::get('nama'));
+    //.MENYIMPAN SESSION
+
+    // REDIRECT jika berhasil register langsung ke profil
+    header('Location: profile.php');
+    // .REDIRECT
   } else
   {
     $errors = $validation->getErrors();
