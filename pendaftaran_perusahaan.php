@@ -7,16 +7,38 @@ require_once "core/Init.php";
 // }
 if (Input::get('submit'))
 {
-  $perusahaan->register_perusahaan(array(
-    //'kolom' => nilai
-    'nama' => Input::get('nama'),
-    'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT),
-    'nama_pemilik' => Input::get('nama_pemilik'),
-    'alamat' => Input::get('alamat'),
-    'kota' => Input::get('kota'),
-    'email' => Input::get('email'),
-    'no_telp' => Input::get('no_telp'),
+  // 1. Memanggil obj validasi
+  $validation = new Validation();
+  // 2. Metode check
+  $validation = $validation->check(array(
+    'nama' => array(
+      'required' => true,
+      'min'=> 3,
+      'max'=>50,
+    ),
+    'password' => array(
+      'required' => true,
+      'min' => 3,
+    )
   ));
+// die("a". $validation->getPassed());
+  // 3. lolos validasi
+  if($validation -> getPassed())
+  {
+    $perusahaan->register_perusahaan(array(
+      //'kolom' => nilai
+      'nama' => Input::get('nama'),
+      'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT),
+      'nama_pemilik' => Input::get('nama_pemilik'),
+      'alamat' => Input::get('alamat'),
+      'kota' => Input::get('kota'),
+      'email' => Input::get('email'),
+      'no_telp' => Input::get('no_telp'),
+    ));
+  } else
+  {
+    print_r($validation->getErrors());
+  }
 }
 
 
