@@ -57,25 +57,27 @@ if (Input::get('submit'))
 require_once "template/header.php";
 
  ?>
+<div class="container">
+  <div class="row">
+    <div class="col m6 s12">
+      <h3>Daftar Penyedia Lowongan Kerja disini</h3>
+      <form class="" action="pendaftaran_perusahaan.php" method="post">
+        <label>Nama: </label>
+        <input type="text" name="nama" value=""><br>
+        <label>Password: </label>
+        <input type="password" name="password" value=""><br>
+        <label>Nama Pemilik: </label>
+        <input type="text" name="nama_pemilik" value=""><br>
+        <label>Alamat: </label>
+        <input type="text" name="alamat" value=""><br>
+        <label>Kota: </label>
+        <input type="text" name="kota" value=""><br>
+        <label>Email: </label>
+        <input type="text" name="email" value=""><br>
+        <label>No Telp: </label>
+        <input type="text" name="no_telp" value=""><br>
 
-<h2>Daftar Penyedia Lowongan Kerja disini</h2>
-<form class="" action="pendaftaran_perusahaan.php" method="post">
-  <label>Nama: </label>
-  <input type="text" name="nama" value=""><br>
-  <label>Password: </label>
-  <input type="password" name="password" value=""><br>
-  <label>Nama Pemilik: </label>
-  <input type="text" name="nama_pemilik" value=""><br>
-  <label>Alamat: </label>
-  <input type="text" name="alamat" value=""><br>
-  <label>Kota: </label>
-  <input type="text" name="kota" value=""><br>
-  <label>Email: </label>
-  <input type="text" name="email" value=""><br>
-  <label>No Telp: </label>
-  <input type="text" name="no_telp" value=""><br>
-
-  <input type="submit" name="submit" value="Daftar Sekarang">
+        <input type="submit" name="submit" value="Daftar Sekarang">
 <!--MENAMPILKAN ERROR  -->
 <?php if(!empty($errors)) { ?>
   <div id="errors">
@@ -86,7 +88,9 @@ require_once "template/header.php";
 <?php } ?>
 <!--.MENAMPILKAN ERROR  -->
 </form>
-
+    </div>
+  </div>
+</div>
 <?php
   require_once"template/footer.php";
  ?>
