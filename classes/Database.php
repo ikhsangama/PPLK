@@ -57,6 +57,24 @@ class Database
     return $this->run($query, "masalah saat memasukkan data");
   }
 
+  // Mendapatkan info data yang dicari
+  public function get_info ($table, $column, $value)
+  {
+    // Kalau bukan int diselipkan tanda kutip sebelum mnjalankan kuery
+    if(!is_int($value))
+    {
+      $value = "'". $value ."'";
+      // die($value);
+      $query = "SELECT * FROM $table WHERE $column = $value";
+      $result = $this->mysqli->query($query);
+
+      while($row = $result->fetch_assoc())
+      {
+        return $row;
+      }
+    }
+  }
+
   /** Menjalankan kuery
   */
   public function run($query, $msg)

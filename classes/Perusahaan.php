@@ -23,7 +23,21 @@ class Perusahaan
     if($this->_db->insert('perusahaan', $values))return true;
     else return false;
   }
-}
 
+  public function login_perusahaan($email, $password)
+  {
+    $data = $this->_db->get_info('perusahaan','email', $email);
+    // print_r($data);
+    // die();
+    if(password_verify($password, $data['password']))
+    {
+      return true;
+    }
+    else
+    {
+      return false;
+    }
+  }
+}
 
  ?>
