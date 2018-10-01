@@ -1,18 +1,18 @@
 <?php
 class Session{
 
-  public static function isAktif($nama){
-    return (isset($_SESSION[$nama])) ? true : false ;
+  public static function isAktif($email){
+    return (isset($_SESSION[$email])) ? true : false ;
   }
 
-  public static function setNamaSession($nama, $nilai)
+  public static function setEmailSession($email, $nilai)
   {
-    return $_SESSION[$nama] = $nilai;
+    return $_SESSION[$email] = $nilai;
   }
 
-  public static function getNamaSession($nama)
+  public static function getEmailSession($email)
   {
-    return $_SESSION[$nama];
+    return $_SESSION[$email];
   }
 }
 ?>

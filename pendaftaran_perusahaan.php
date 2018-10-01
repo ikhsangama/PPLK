@@ -41,7 +41,7 @@ if (Input::get('submit'))
 
     // MENYIMPAN SESSION
     // Session::setNamaSession('variabel / key', value);
-    Session::setNamaSession('perusahaan', Input::get('nama'));
+    Session::setEmailSession('perusahaan', Input::get('email'));
     //.MENYIMPAN SESSION
 
     // REDIRECT jika berhasil register langsung ke profil

@@ -14,7 +14,7 @@ require_once "template/header.php"
 <!--.HEADER  -->
 
 <!--KONTEN  -->
-<h3>Hai <?php echo Session::getNamaSession('perusahaan') ?></h3>
+<h3>Hai <?php echo Session::getEmailSession('perusahaan') ?></h3>
 <!--.KONTEN  -->
 
 <!--FOOTER  -->
