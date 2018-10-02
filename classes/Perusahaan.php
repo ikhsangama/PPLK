@@ -9,7 +9,6 @@ class Perusahaan
 
   function __construct()
   {
-    // code...
     $this->_db = Database::getInstance(); //melakukan koneksi ke database
   }
 
@@ -42,7 +41,7 @@ class Perusahaan
   public function check_email($email)
   {
     $data = $this->_db->get_info('perusahaan','email',$email);
-    print_r($data);
+    // print_r($data);
     if(empty($data)) return false;
     else return true;
   }

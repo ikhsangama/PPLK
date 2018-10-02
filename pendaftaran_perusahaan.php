@@ -31,32 +31,38 @@ if (Input::get('submit'))
     ),
   ));
 // die("a". $validation->getPassed());
-  // 3. lolos validasi
-  if($validation -> getPassed())
+// Cek apakah nama sudah terdaftar
+  if($perusahaan->check_email(Input::get('email')))
   {
-    $perusahaan->register_perusahaan(array(
-      //'kolom' => nilai
-      'nama' => Input::get('nama'),
-      'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT),
-      'nama_pemilik' => Input::get('nama_pemilik'),
-      'alamat' => Input::get('alamat'),
-      'kota' => Input::get('kota'),
-      'email' => Input::get('email'),
-      'no_telp' => Input::get('no_telp'),
-    ));
-
-
-    // MENYIMPAN SESSION
-    // Session::setNamaSession('variabel / key', value);
-    Session::setEmailSession('perusahaan', Input::get('email'));
-    //.MENYIMPAN SESSION
-
-    // REDIRECT jika berhasil register langsung ke profil
-    header('Location: profil.php');
-    // .REDIRECT
-  } else
+    $errors[]="Email sudah terdaftar";
+  }else // 3. lolos validasi
   {
-    $errors = $validation->getErrors();
+    if($validation -> getPassed())
+    {
+      $perusahaan->register_perusahaan(array(
+        //'kolom' => nilai
+        'nama' => Input::get('nama'),
+        'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT),
+        'nama_pemilik' => Input::get('nama_pemilik'),
+        'alamat' => Input::get('alamat'),
+        'kota' => Input::get('kota'),
+        'email' => Input::get('email'),
+        'no_telp' => Input::get('no_telp'),
+      ));
+
+
+      // MENYIMPAN SESSION
+      // Session::setNamaSession('variabel / key', value);
+      Session::setEmailSession('perusahaan', Input::get('email'));
+      //.MENYIMPAN SESSION
+
+      // REDIRECT jika berhasil register langsung ke profil
+      header('Location: profil.php');
+      // .REDIRECT
+    } else
+    {
+      $errors = $validation->getErrors();
+    }
   }
 }
 
