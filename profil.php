@@ -3,11 +3,17 @@
 require_once "core/init.php";
 
 // Jika session belum ada,
-if(!Session::isAktif('perusahaan')){
+if(!Session::isAktif('perusahaan'))
+{
+  Session::flash('peringatan', 'Anda harus login');
    // redirect ke halaman register
-  header("Location: pendaftaran_perusahaan.php");
+  header("Location: masuk.php");
 }
 
+if(Session::isAktif('daftar_baru'))
+{
+  echo Session::flash('daftar_baru');
+}
 require_once "template/header.php"
 ?>
 

@@ -2,11 +2,16 @@
 require_once "core/Init.php";
 
 // Jika session sudah ada,
-if(Session::isAktif('perusahaan')){
+if(Session::isAktif('perusahaan'))
+{
    // redirect ke halaman register
   header("Location: profil.php");
 }
 
+if(Session::isAktif('peringatan'))
+{
+  echo Session::flash('peringatan');
+}
 //VALIDASI
 //setelah load folder classes namun sebelum render tampilan header
 // if(isset($_POST['submit'])){

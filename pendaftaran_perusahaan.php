@@ -54,8 +54,9 @@ if (Input::get('submit'))
         'no_telp' => Input::get('no_telp'),
       ));
 
-
       // MENYIMPAN SESSION
+      // Menampilkan pesan flash pertama kali mendaftar
+      Session::flash('daftar_baru', 'Selamat! Akun perusahaan anda telah berhasil didaftarkan.');
       // Session::setNamaSession('variabel / key', value);
       Session::setEmailSession('perusahaan', Input::get('email'));
       //.MENYIMPAN SESSION

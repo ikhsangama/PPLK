@@ -14,5 +14,27 @@ class Session{
   {
     return $_SESSION[$email];
   }
+
+  public static function flash($nama, $pesan='')
+  {
+    if(self::isAktif($nama))
+    {
+      $session = self::getEmailSession($nama);
+      self::delete($nama);
+      return $session;
+    }
+    else
+    {
+      self::setEmailSession($nama, $pesan);
+    }
+  }
+
+  public static function delete($nama)
+  {
+    if(self::isAktif($nama))
+    {
+      unset($_SESSION[$nama]);
+    }
+  }
 }
 ?>
