@@ -2,7 +2,7 @@
 require_once "core/Init.php";
 
 // Jika session sudah ada,
-if(Session::isAktif('perusahaan')){
+if(Session::isOn('perusahaan')){
    // redirect ke halaman register
   header("Location: profil.php");
 }
@@ -58,7 +58,7 @@ if (Input::get('submit'))
       // Menampilkan pesan flash pertama kali mendaftar
       Session::flash('daftar_baru', 'Selamat! Akun perusahaan anda telah berhasil didaftarkan.');
       // Session::setNamaSession('variabel / key', value);
-      Session::setEmailSession('perusahaan', Input::get('email'));
+      Session::setSession('perusahaan', Input::get('email'));
       //.MENYIMPAN SESSION
 
       // REDIRECT jika berhasil register langsung ke profil

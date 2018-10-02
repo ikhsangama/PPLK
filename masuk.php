@@ -2,13 +2,13 @@
 require_once "core/Init.php";
 
 // Jika session sudah ada,
-if(Session::isAktif('perusahaan'))
+if(Session::isOn('perusahaan'))
 {
    // redirect ke halaman register
   header("Location: profil.php");
 }
 
-if(Session::isAktif('peringatan'))
+if(Session::isOn('peringatan'))
 {
   echo Session::flash('peringatan');
 }
@@ -42,7 +42,7 @@ if (Input::get('submit'))
       {
         // MENYIMPAN SESSION
         // Session::setNamaSession('variabel / key', value);
-        Session::setEmailSession('perusahaan', Input::get('email'));
+        Session::setSession('perusahaan', Input::get('email'));
         //.MENYIMPAN SESSION
 
         // REDIRECT jika berhasil register langsung ke profil
