@@ -29,6 +29,10 @@ if (Input::get('submit'))
       'required' => true,
       'min' => 3,
     ),
+    'password_verify' => array(
+      'required' => true,
+      'match' => 'password',
+    ),
   ));
 // die("a". $validation->getPassed());
 // Cek apakah nama sudah terdaftar
@@ -79,6 +83,8 @@ require_once "template/header.php";
         <input type="text" name="nama" value=""><br>
         <label>Password: </label>
         <input type="password" name="password" value=""><br>
+        <label>Ulangi Password: </label>
+        <input type="password" name="password_verify" value=""><br>
         <label>Nama Pemilik: </label>
         <input type="text" name="nama_pemilik" value=""><br>
         <label>Alamat: </label>
