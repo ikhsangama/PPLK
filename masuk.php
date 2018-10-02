@@ -24,19 +24,25 @@ if (Input::get('submit'))
   // 3. lolos validasi
   if($validation -> getPassed())
   {
-    if($perusahaan->login_perusahaan(Input::get('email'), Input::get('password')))
+    if($perusahaan->check_email(Input::get('email')))
     {
-      // MENYIMPAN SESSION
-      // Session::setNamaSession('variabel / key', value);
-      Session::setEmailSession('perusahaan', Input::get('email'));
-      //.MENYIMPAN SESSION
+      if($perusahaan->login_perusahaan(Input::get('email'), Input::get('password')))
+      {
+        // MENYIMPAN SESSION
+        // Session::setNamaSession('variabel / key', value);
+        Session::setEmailSession('perusahaan', Input::get('email'));
+        //.MENYIMPAN SESSION
 
-      // REDIRECT jika berhasil register langsung ke profil
-      header('Location: profile.php');
-      // .REDIRECT
+        // REDIRECT jika berhasil register langsung ke profil
+        header('Location: profile.php');
+        // .REDIRECT
+      } else
+      {
+        $errors[] = "Login Gagal";
+      }
     } else
     {
-      $errors[] = "Login Gagal";
+      $errors[] = "Email belum terdaftar";
     }
   } else
   {
