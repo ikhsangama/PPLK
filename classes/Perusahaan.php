@@ -38,6 +38,14 @@ class Perusahaan
       return false;
     }
   }
+
+  public function check_email($email)
+  {
+    $data = $this->_db->get_info('perusahaan','email',$email);
+    print_r($data);
+    if(empty($data)) return false;
+    else return true;
+  }
 }
 
  ?>
