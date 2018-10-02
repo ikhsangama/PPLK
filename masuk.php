@@ -1,5 +1,12 @@
 <?php
 require_once "core/Init.php";
+
+// Jika session sudah ada,
+if(Session::isAktif('perusahaan')){
+   // redirect ke halaman register
+  header("Location: profil.php");
+}
+
 //VALIDASI
 //setelah load folder classes namun sebelum render tampilan header
 // if(isset($_POST['submit'])){
@@ -34,7 +41,7 @@ if (Input::get('submit'))
         //.MENYIMPAN SESSION
 
         // REDIRECT jika berhasil register langsung ke profil
-        header('Location: profile.php');
+        header('Location: profil.php');
         // .REDIRECT
       } else
       {
@@ -55,7 +62,7 @@ require_once "template/header.php";
 
  ?>
 
-<h2>Daftar Penyedia Lowongan Kerja disini</h2>
+<h2>Masuk Penyedia Lowongan Kerja disini</h2>
 <form class="" action="masuk.php" method="post">
   <label>Email: </label>
   <input type="text" name="email" value=""><br>
