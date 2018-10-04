@@ -2,7 +2,7 @@
 require_once "core/Init.php";
 
 // Jika session sudah ada,
-if(Session::isOn('perusahaan')){
+if($perusahaan->isLogin()){
    // redirect ke halaman register
   // header("Location: profil.php");
   Redirect::to('profil');

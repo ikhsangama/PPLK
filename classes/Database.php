@@ -6,7 +6,7 @@
 class Database
 {
 
-  private static $INSTANCE = null;
+  private static $connection = null;
   private $mysqli,
           $HOST = 'localhost',
           $USER = 'root',
@@ -22,12 +22,12 @@ class Database
   }
 
   // singleton patter, menguji koneksi agar tidak berulang kali
-  public static function getInstance(){
-    if(!isset(self::$INSTANCE))
+  public static function getConnection(){
+    if(!isset(self::$connection))
     {
-      self::$INSTANCE = new Database();
+      self::$connection = new Database();
     }
-    return self::$INSTANCE;
+    return self::$connection;
   }
 
   public function insert($table, $values = array())

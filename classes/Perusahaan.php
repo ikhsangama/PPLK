@@ -9,7 +9,7 @@ class Perusahaan
 
   function __construct()
   {
-    $this->_db = Database::getInstance(); //melakukan koneksi ke database
+    $this->_db = Database::getConnection(); //melakukan koneksi ke database
   }
 
   /**
@@ -44,6 +44,23 @@ class Perusahaan
     // print_r($data);
     if(empty($data)) return false;
     else return true;
+  }
+
+  public function isLogin()
+  {
+    if(Session::isOn('perusahaan')) return true;
+    else return false;
+  }
+
+  public function get_data($email)
+  {
+    if($this->check_email($email))
+    {
+      return $this->_db->get_info('perusahaan','email',$email);
+    } else
+    {
+      return die('Nama user tidak terdaftar');
+    }
   }
 }
 
