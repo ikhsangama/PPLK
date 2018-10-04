@@ -4,7 +4,8 @@ require_once "core/Init.php";
 // Jika session sudah ada,
 if(Session::isOn('perusahaan')){
    // redirect ke halaman register
-  header("Location: profil.php");
+  // header("Location: profil.php");
+  Redirect::to('profil');
 }
 
 //VALIDASI
@@ -62,7 +63,8 @@ if (Input::get('submit'))
       //.MENYIMPAN SESSION
 
       // REDIRECT jika berhasil register langsung ke profil
-      header('Location: profil.php');
+      // header('Location: profil.php');
+      Redirect::to('profil');
       // .REDIRECT
     } else
     {

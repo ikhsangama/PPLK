@@ -7,7 +7,8 @@ if(!Session::isOn('perusahaan'))
 {
   Session::flash('peringatan', 'Anda harus login');
    // redirect ke halaman register
-  header("Location: masuk.php");
+  // header("Location: masuk.php");
+  Redirect::to('masuk');
 }
 
 if(Session::isOn('daftar_baru'))
