@@ -6,14 +6,15 @@
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.4/jquery.min.js"></script>
 
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+    <link rel="stylesheet" href="assets/css/materialize.min.css">
+    <script src="assets/js/materialize.min.js"></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style media="screen">
     </style>
   </head>
-  <body>
+<body class="grey lighten-3">
+  <header>
     <nav>
         <div class="nav-wrapper">
           <a href="#!" class="brand-logo">PPLK</a>
@@ -41,8 +42,8 @@
         <li><a href="pendaftaran_perusahaan.php">Pendaftaran Perusahaan</a></li>
         <?php } ?>
       </ul>
-  </body>
-</html>
+  </header>
+
 <script type="text/javascript">
 $(document).ready(function(){
   $('.sidenav').sidenav();

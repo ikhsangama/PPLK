@@ -14,6 +14,7 @@ if(Session::isAktif('perusahaan')){
 // }
 $errors = array();
 
+//harus ada input dengan nama submit, kalo enggak ke skip proses validasinya
 if (Input::get('submit'))
 {
   // 1. Memanggil obj validasi
@@ -64,40 +65,53 @@ if (Input::get('submit'))
 require_once "template/header.php";
 
  ?>
+<main>
 <div class="container">
-  <div class="row">
-    <div class="col m6 s12">
-      <h3>Daftar Penyedia Lowongan Kerja disini</h3>
-      <form class="" action="pendaftaran_perusahaan.php" method="post">
-        <label>Nama: </label>
-        <input type="text" name="nama" value=""><br>
-        <label>Password: </label>
-        <input type="password" name="password" value=""><br>
-        <label>Nama Pemilik: </label>
-        <input type="text" name="nama_pemilik" value=""><br>
-        <label>Alamat: </label>
-        <input type="text" name="alamat" value=""><br>
-        <label>Kota: </label>
-        <input type="text" name="kota" value=""><br>
-        <label>Email: </label>
-        <input type="text" name="email" value=""><br>
-        <label>No Telp: </label>
-        <input type="text" name="no_telp" value=""><br>
+  <div class="row" style="padding:50px">
+    <div class="col l12 m12 s12">
+      <div class="card z-depth-4">
+        <div class="card-content">
+        <h3>Daftar Penyedia Lowongan Kerja disini</h3>
+        <div class="divider"></div>
 
-        <input type="submit" name="submit" value="Daftar Sekarang">
+        <form class="" action="pendaftaran_perusahaan.php" method="post" style="padding-left: 30px; padding-right:30px; padding-top: 30px">
+          <label>Nama: </label>
+          <input type="text" name="nama" value="" ><br>
+          <label>Password: </label>
+          <input type="password" name="password" value=""><br>
+          <label>Nama Pemilik: </label>
+          <input type="text" name="nama_pemilik" value=""><br>
+          <label>Alamat: </label>
+          <input type="text" name="alamat" value=""><br>
+          <label>Kota: </label>
+          <input type="text" name="kota" value=""><br>
+          <label>Email: </label>
+          <input type="email" name="email" value=""><br>
+          <label>No Telp: </label>
+          <input type="text" name="no_telp" value=""><br>
+
+          <!--<input type="submit" name="submit" value="Daftar Sekarang">-->
+          <input type="hidden" name="submit" value="kekirimgan">
+          <button class="btn waves-effect waves-light " type="submit" >Submit
+            <i class="material-icons right">send</i>
+          </button>
 <!--MENAMPILKAN ERROR  -->
 <?php if(!empty($errors)) { ?>
-  <div id="errors">
+    <div id="errors">
     <?php foreach($errors as $error){ ?>
       <li><?php echo $error ?></li>
     <?php } ?>
-  </div>
+    </div>
 <?php } ?>
 <!--.MENAMPILKAN ERROR  -->
-</form>
+        </form>
+
+      </div>
+      </div>
     </div>
   </div>
 </div>
+</main>
 <?php
   require_once"template/footer.php";
  ?>
