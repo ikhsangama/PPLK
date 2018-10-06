@@ -11,12 +11,12 @@ if(!$perusahaan->isLogin())
   Redirect::to('masuk');
 }
 
-if(Session::isOn('daftar_baru'))
+if(Session::isOn('profil_baru'))
 {
-  echo Session::flash('daftar_baru');
+  echo Session::flash('profil_baru');
 }
 
-$perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan'));
+// $perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan')); dipindah ke init
 require_once "template/header.php"
 ?>
 

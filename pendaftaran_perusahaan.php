@@ -57,7 +57,7 @@ if (Input::get('submit'))
 
       // MENYIMPAN SESSION
       // Menampilkan pesan flash pertama kali mendaftar
-      Session::flash('daftar_baru', 'Selamat! Akun perusahaan anda telah berhasil didaftarkan.');
+      Session::flash('profil_baru', 'Selamat! Akun perusahaan anda telah berhasil didaftarkan.');
       // Session::setNamaSession('variabel / key', value);
       Session::setSession('perusahaan', Input::get('email'));
       //.MENYIMPAN SESSION

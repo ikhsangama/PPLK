@@ -57,6 +57,32 @@ class Database
     return $this->run($query, "masalah saat memasukkan data");
   }
 
+  public function update($table, $column, $id, $values)
+  {
+    //mengambil semua values
+    $valueArrays = array();
+    $i = 0;
+
+    // UPDATE TABLE SET kunci1=nilai1, kunci2=nilai2...
+    foreach ($values as $key => $value) {
+      if (is_int($values))
+      {
+        $valueArrays[$i] = $key ."=". $this->escape($value);
+      }
+      else
+      {
+        $valueArrays[$i] = $key ."='". $this->escape($value)."'";
+      }
+      $i++;
+    }
+    //.mengambil semua values
+    $values = implode (",", $valueArrays);
+    // $query = "INSERT INTO perusahaan (nama, password) VALUES ("ikhsan", 123)";
+    $query = "UPDATE $table SET $values WHERE $column = $id";
+    // die($query); //mengecek kueri sebelum dieksekusi dan dimasukkan ke myskl
+    return $this->run($query, "masalah saat memasukkan data");
+  }
+
   // Mendapatkan info data yang dicari
   public function get_info ($table, $column, $value)
   {

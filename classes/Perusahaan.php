@@ -19,8 +19,15 @@ class Perusahaan
   */
   public function register_perusahaan($values = array())
   {
-    if($this->_db->insert('perusahaan', $values))return true;
+    if($this->_db->insert('perusahaan', $values)) return true;
     else return false;
+  }
+
+  public function update_perusahaan($values = array(), $id)
+  {
+    if($this->_db->update('perusahaan', 'idperusahaan', $id, $values)) return true;
+    else return false;
+
   }
 
   public function login_perusahaan($email, $password)

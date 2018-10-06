@@ -15,12 +15,13 @@
   </head>
   <body>
     <nav>
-        <div class="nav-wrapper">
+        <div class="container nav-wrapper">
           <a href="#!" class="brand-logo">PPLK</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
-            <?php if(Session::isOn('perusahaan')){ ?>
-            <li><a href="profil.php">Profil</a></li>
+            <?php if(Session::isOn('perusahaan')){?>
+            <li><a href="edit_profil.php">Edit Profil</a></li>
+            <li><a href="profil.php"><?php echo $perusahaan_data['nama'] ?></a></li>
             <li><a href="keluar.php">Keluar</a></li>
             <?php } else {?>
             <li><a href="masuk.php">Masuk</a></li>
