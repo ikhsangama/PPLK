@@ -67,14 +67,30 @@ require_once "template/header.php";
  ?>
 <main>
 <div class="container">
-  <div class="row" style="padding:50px">
-    <div class="col l12 m12 s12">
-      <div class="card z-depth-4">
+  <div class="row">
+  <div class="section">
+    <!--MENAMPILKAN ERROR  -->
+    <div class="col l10 m10 s12 offset-l1 offset-m1">
+    <?php if(!empty($errors)) { ?>
+        <div class="card-panel red lighten-4" id="alert_panel">
+          <i class="material-icons right" id="alert_close" style="cursor:pointer">close</i>
+        <?php foreach($errors as $error){ ?>
+          <li><?php echo $error ?></li>
+        <?php } ?>
+        </div>
+    <?php } ?>
+  </div>
+    <!--.MENAMPILKAN ERROR  -->
+  </div>
+</div>
+  <div class="row">
+    <div class="col l10 m10 s12 offset-l1 offset-m1">
+      <div class="card az-depth-4">
         <div class="card-content">
         <h3>Daftar Penyedia Lowongan Kerja disini</h3>
         <div class="divider"></div>
 
-        <form class="" action="pendaftaran_perusahaan.php" method="post" style="padding-left: 30px; padding-right:30px; padding-top: 30px">
+        <form class="section" action="pendaftaran_perusahaan.php" method="post">
           <label>Nama: </label>
           <input type="text" name="nama" value="" ><br>
           <label>Password: </label>
@@ -92,18 +108,9 @@ require_once "template/header.php";
 
           <!--<input type="submit" name="submit" value="Daftar Sekarang">-->
           <input type="hidden" name="submit" value="kekirimgan">
-          <button class="btn waves-effect waves-light " type="submit" >Submit
+          <button class="btn waves-effect waves-light" type="submit" >Submit
             <i class="material-icons right">send</i>
           </button>
-<!--MENAMPILKAN ERROR  -->
-<?php if(!empty($errors)) { ?>
-    <div id="errors">
-    <?php foreach($errors as $error){ ?>
-      <li><?php echo $error ?></li>
-    <?php } ?>
-    </div>
-<?php } ?>
-<!--.MENAMPILKAN ERROR  -->
         </form>
 
       </div>

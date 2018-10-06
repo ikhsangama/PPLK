@@ -13,11 +13,11 @@
     <style media="screen">
     </style>
   </head>
-<body class="grey lighten-3">
+<body>
   <header>
     <nav>
         <div class="nav-wrapper">
-          <a href="#!" class="brand-logo">PPLK</a>
+          <a href="#!" class="brand-logo" style="padding-left: 20px">PPLK</a>
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <?php if(Session::isAktif('perusahaan')){ ?>
@@ -43,9 +43,12 @@
         <?php } ?>
       </ul>
   </header>
-
 <script type="text/javascript">
 $(document).ready(function(){
   $('.sidenav').sidenav();
+});
+$(document).on('click','#alert_close',function(){
+  $( "#alert_panel" ).fadeOut( "slow", function() {
+  });
 });
 </script>
