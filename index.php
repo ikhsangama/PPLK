@@ -1,3 +1,3 @@
 <script>
-	window.location = "pendaftaran_perusahaan.php";
+	window.location = "data_lowongan.php";
 </script>

@@ -66,27 +66,31 @@ if (Input::get('submit'))
 
 
 require_once "template/header.php";
-
  ?>
 
-<h2>Masuk Penyedia Lowongan Kerja disini</h2>
-<form class="" action="masuk.php" method="post">
-  <label>Email: </label>
-  <input type="text" name="email" value=""><br>
-  <label>Password: </label>
-  <input type="password" name="password" value=""><br>
+<div class="container">
+  <h2>Masuk Penyedia Lowongan Kerja</h2>
+  <hr><hr><br>
 
-  <input type="submit" name="submit" value="Masuk Sekarang">
-<!--MENAMPILKAN ERROR  -->
-<?php if(!empty($errors)) { ?>
-  <div id="errors">
-    <?php foreach($errors as $error){ ?>
-      <li><?php echo $error ?></li>
-    <?php } ?>
-  </div>
-<?php } ?>
-<!--.MENAMPILKAN ERROR  -->
-</form>
+  <form class="container" action="masuk.php" method="post">
+    <label>Email: </label>
+    <input type="text" name="email" value=""><br>
+    <label>Password: </label>
+    <input type="password" name="password" value=""><br>
+
+    <input type="submit" name="submit" value="Masuk Sekarang">
+  <!--MENAMPILKAN ERROR  -->
+  <?php if(!empty($errors)) { ?>
+    <div id="errors">
+      <?php foreach($errors as $error){ ?>
+        <li><?php echo $error ?></li>
+      <?php } ?>
+    </div>
+  <?php } ?>
+  <!--.MENAMPILKAN ERROR  -->
+  </form>
+</div>
+
 
 <?php
   require_once"template/footer.php";

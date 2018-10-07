@@ -116,9 +116,21 @@ class Database
     return $this->mysqli->real_escape_string($name);
   }
 
+  public function get_table($table, $column="")
+  {
+    if($column!="")
+    {
+      $query = "SELECT $column FROM $table";
+    } else
+    {
+      $query = "SELECT * FROM $table";
+    }
+    // die($query);
+    $result = $this->mysqli->query($query);
+
+    return $result;
+  }
+
 }
 
-// // cek nilai object db
-// $db = Database::getInstance();
-// var_dump($db);
  ?>

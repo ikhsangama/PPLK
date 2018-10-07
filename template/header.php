@@ -20,6 +20,7 @@
           <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
             <?php if(Session::isOn('perusahaan')){?>
+            <li><a href="data_lowongan.php">Data Lowongan</a></li>
             <li><a href="edit_profil.php">Edit Profil</a></li>
             <li><a href="profil.php"><?php echo $perusahaan_data['nama'] ?></a></li>
             <li><a href="keluar.php">Keluar</a></li>

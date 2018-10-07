@@ -54,7 +54,7 @@ if (Input::get('submit'))
     }
   }else
   {
-    $errors[] = 'Password lama anda salah';
+    $errors[] = 'Password salah';
   }
 }
 // $perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan')); dipindah ke header
