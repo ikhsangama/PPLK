@@ -11,10 +11,20 @@
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <style media="screen">
+      body {
+            display: flex;
+            min-height: 100vh;
+            flex-direction: column;
+          }
+      main {
+          flex: 1 0 auto;
+          }
     </style>
   </head>
+
 <body>
   <header>
+    <!-- NAVBAR UTAMA-->
     <nav>
         <div class="nav-wrapper">
           <a href="#!" class="brand-logo" style="padding-left: 20px">PPLK</a>
@@ -24,14 +34,16 @@
             <li><a href="profil.php">Profil</a></li>
             <li><a href="keluar.php">Keluar</a></li>
             <?php } else {?>
-            <li><a href="masuk.php">Masuk</a></li>
             <li><a href="pendaftaran_pencaker.php">Pendaftaran Pencaker</a></li>
             <li><a href="pendaftaran_perusahaan.php">Pendaftaran Perusahaan</a></li>
+            <li><a href="masuk.php">Masuk</a></li>
             <?php } ?>
           </ul>
         </div>
-      </nav>
+    </nav>
+    <!-- .NAVBAR UTAMA-->
 
+    <!-- SIDENAV VERSI MOBILE-->
       <ul class="sidenav" id="mobile-demo">
         <?php if(Session::isAktif('perusahaan')){ ?>
         <li><a href="profil.php">Profil</a></li>
@@ -42,13 +54,27 @@
         <li><a href="pendaftaran_perusahaan.php">Pendaftaran Perusahaan</a></li>
         <?php } ?>
       </ul>
+    <!-- .SIDENAV VERSI MOBILE-->
   </header>
+
 <script type="text/javascript">
+//SCRIPT UNTUK SIDENAV VERSI MOBILE
 $(document).ready(function(){
   $('.sidenav').sidenav();
 });
+//SCRIPT UNTUK MENGHILANGKAN PANEL NOTIFIKASI
 $(document).on('click','#alert_close',function(){
   $( "#alert_panel" ).fadeOut( "slow", function() {
   });
 });
+
+
+//TESTING ZONE
+//$(document).on('click','header',function(){
+//  $("span").attr('data-error','hahahaha<br>hahahahah');
+//  $("input").addClass('invalid');
+//  $('<span class="helper-text sec" data-error="aaaa" data-success="">aaaa</span>').insertAfter("input");
+//  $('<span class="helper-text sec" data-error="aaaa" data-success="">aaaa</span>').insertAfter("input");
+//  alert('haha');
+//});
 </script>
