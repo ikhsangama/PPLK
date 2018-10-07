@@ -45,6 +45,18 @@ class Validation
             $this->addError ("$item harus sama dengan $rule_value");
           } break;
 
+          case 'less_than':
+          if(Input::get($item) > Input::get($rule_value))
+          {
+            $this->addError ("$item harus kurang dari $rule_value");
+          } break;
+
+          case 'more_than':
+          if(Input::get($item) < Input::get($rule_value))
+          {
+            $this->addError ("$item harus lebih dari $rule_value");
+          } break;
+
           default:
             // code...
             break;
