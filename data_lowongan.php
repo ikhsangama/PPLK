@@ -11,9 +11,9 @@ if(!$perusahaan->isLogin())
   Redirect::to('masuk');
 }
 
-if(Session::isOn('profil_baru'))
+if(Session::isOn('data_lowongan_baru'))
 {
-  echo Session::flash('profil_baru');
+  echo Session::flash('data_lowongan_baru');
 }
 
 // $perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan')); dipindah ke init
@@ -24,9 +24,18 @@ require_once "template/header.php"
 
 <!--KONTEN  -->
 <div class="container">
-  <h2>Hai <?php echo $perusahaan_data['nama'] ?></h2>
+  <h2>Data Lowongan
+    <a class="waves-effect waves-light btn-small red" href="tambah_data_lowongan.php">
+      <i class="material-icons left">
+        add
+      </i>
+      Tambah
+    </a>
+  </h2>
+
   <hr><hr><br>
-  
+
+
 </div>
 <!--.KONTEN  -->
 

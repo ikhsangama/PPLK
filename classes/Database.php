@@ -6,7 +6,7 @@
 class Database
 {
 
-  private static $INSTANCE = null;
+  private static $connection = null;
   private $mysqli,
           $HOST = 'localhost',
           $USER = 'root',
@@ -22,12 +22,12 @@ class Database
   }
 
   // singleton patter, menguji koneksi agar tidak berulang kali
-  public static function getInstance(){
-    if(!isset(self::$INSTANCE))
+  public static function getConnection(){
+    if(!isset(self::$connection))
     {
-      self::$INSTANCE = new Database();
+      self::$connection = new Database();
     }
-    return self::$INSTANCE;
+    return self::$connection;
   }
 
   public function insert($table, $values = array())
@@ -53,6 +53,32 @@ class Database
     $values = implode (",", $valueArrays);
     // $query = "INSERT INTO perusahaan (nama, password) VALUES ("ikhsan", 123)";
     $query = "INSERT INTO $table ($kolom) VALUES ($values)";
+    // die($query); //mengecek kueri sebelum dieksekusi dan dimasukkan ke myskl
+    return $this->run($query, "masalah saat memasukkan data");
+  }
+
+  public function update($table, $column, $id, $values)
+  {
+    //mengambil semua values
+    $valueArrays = array();
+    $i = 0;
+
+    // UPDATE TABLE SET kunci1=nilai1, kunci2=nilai2...
+    foreach ($values as $key => $value) {
+      if (is_int($values))
+      {
+        $valueArrays[$i] = $key ."=". $this->escape($value);
+      }
+      else
+      {
+        $valueArrays[$i] = $key ."='". $this->escape($value)."'";
+      }
+      $i++;
+    }
+    //.mengambil semua values
+    $values = implode (",", $valueArrays);
+    // $query = "INSERT INTO perusahaan (nama, password) VALUES ("ikhsan", 123)";
+    $query = "UPDATE $table SET $values WHERE $column = $id";
     // die($query); //mengecek kueri sebelum dieksekusi dan dimasukkan ke myskl
     return $this->run($query, "masalah saat memasukkan data");
   }
@@ -90,9 +116,21 @@ class Database
     return $this->mysqli->real_escape_string($name);
   }
 
+  public function get_table($table, $column="")
+  {
+    if($column!="")
+    {
+      $query = "SELECT $column FROM $table";
+    } else
+    {
+      $query = "SELECT * FROM $table";
+    }
+    // die($query);
+    $result = $this->mysqli->query($query);
+
+    return $result;
+  }
+
 }
 
-// // cek nilai object db
-// $db = Database::getInstance();
-// var_dump($db);
  ?>

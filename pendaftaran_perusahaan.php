@@ -2,9 +2,10 @@
 require_once "core/Init.php";
 
 // Jika session sudah ada,
-if(Session::isAktif('perusahaan')){
+if($perusahaan->isLogin()){
    // redirect ke halaman register
-  header("Location: profil.php");
+  // header("Location: profil.php");
+  Redirect::to('profil');
 }
 
 //VALIDASI
@@ -30,34 +31,46 @@ if (Input::get('submit'))
       'required' => true,
       'min' => 3,
     ),
+    'password_verify' => array(
+      'required' => true,
+      'match' => 'password',
+    ),
   ));
 // die("a". $validation->getPassed());
-  // 3. lolos validasi
-  if($validation -> getPassed())
+// Cek apakah nama sudah terdaftar
+  if($perusahaan->check_email(Input::get('email')))
   {
-    $perusahaan->register_perusahaan(array(
-      //'kolom' => nilai
-      'nama' => Input::get('nama'),
-      'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT),
-      'nama_pemilik' => Input::get('nama_pemilik'),
-      'alamat' => Input::get('alamat'),
-      'kota' => Input::get('kota'),
-      'email' => Input::get('email'),
-      'no_telp' => Input::get('no_telp'),
-    ));
-
-
-    // MENYIMPAN SESSION
-    // Session::setNamaSession('variabel / key', value);
-    Session::setEmailSession('perusahaan', Input::get('email'));
-    //.MENYIMPAN SESSION
-
-    // REDIRECT jika berhasil register langsung ke profil
-    header('Location: profil.php');
-    // .REDIRECT
-  } else
+    $errors[]="Email sudah terdaftar";
+  }else // 3. lolos validasi
   {
-    $errors = $validation->getErrors();
+    if($validation -> getPassed())
+    {
+      $perusahaan->register_perusahaan(array(
+        //'kolom' => nilai
+        'nama' => Input::get('nama'),
+        'password' => password_hash(Input::get('password'), PASSWORD_DEFAULT),
+        'nama_pemilik' => Input::get('nama_pemilik'),
+        'alamat' => Input::get('alamat'),
+        'kota' => Input::get('kota'),
+        'email' => Input::get('email'),
+        'no_telp' => Input::get('no_telp'),
+      ));
+
+      // MENYIMPAN SESSION
+      // Menampilkan pesan flash pertama kali mendaftar
+      Session::flash('profil_baru', 'Selamat! Akun perusahaan anda telah berhasil didaftarkan.');
+      // Session::setNamaSession('variabel / key', value);
+      Session::setSession('perusahaan', Input::get('email'));
+      //.MENYIMPAN SESSION
+
+      // REDIRECT jika berhasil register langsung ke profil
+      // header('Location: profil.php');
+      Redirect::to('profil');
+      // .REDIRECT
+    } else
+    {
+      $errors = $validation->getErrors();
+    }
   }
 }
 

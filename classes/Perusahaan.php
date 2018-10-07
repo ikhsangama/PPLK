@@ -9,8 +9,7 @@ class Perusahaan
 
   function __construct()
   {
-    // code...
-    $this->_db = Database::getInstance(); //melakukan koneksi ke database
+    $this->_db = Database::getConnection(); //melakukan koneksi ke database
   }
 
   /**
@@ -20,8 +19,15 @@ class Perusahaan
   */
   public function register_perusahaan($values = array())
   {
-    if($this->_db->insert('perusahaan', $values))return true;
+    if($this->_db->insert('perusahaan', $values)) return true;
     else return false;
+  }
+
+  public function update_perusahaan($values = array(), $id)
+  {
+    if($this->_db->update('perusahaan', 'idperusahaan', $id, $values)) return true;
+    else return false;
+
   }
 
   public function login_perusahaan($email, $password)
@@ -42,9 +48,26 @@ class Perusahaan
   public function check_email($email)
   {
     $data = $this->_db->get_info('perusahaan','email',$email);
-    print_r($data);
+    // print_r($data);
     if(empty($data)) return false;
     else return true;
+  }
+
+  public function isLogin()
+  {
+    if(Session::isOn('perusahaan')) return true;
+    else return false;
+  }
+
+  public function get_data($email)
+  {
+    if($this->check_email($email))
+    {
+      return $this->_db->get_info('perusahaan','email',$email);
+    } else
+    {
+      return die('Nama user tidak terdaftar');
+    }
   }
 }
 

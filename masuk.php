@@ -2,11 +2,17 @@
 require_once "core/Init.php";
 
 // Jika session sudah ada,
-if(Session::isAktif('perusahaan')){
+if($perusahaan->islogin())
+{
    // redirect ke halaman register
-  header("Location: profil.php");
+  // header("Location: profil.php");
+  Redirect::to("profil");
 }
 
+if(Session::isOn('peringatan'))
+{
+  echo Session::flash('peringatan');
+}
 //VALIDASI
 //setelah load folder classes namun sebelum render tampilan header
 // if(isset($_POST['submit'])){
@@ -37,11 +43,12 @@ if (Input::get('submit'))
       {
         // MENYIMPAN SESSION
         // Session::setNamaSession('variabel / key', value);
-        Session::setEmailSession('perusahaan', Input::get('email'));
+        Session::setSession('perusahaan', Input::get('email'));
         //.MENYIMPAN SESSION
 
         // REDIRECT jika berhasil register langsung ke profil
-        header('Location: profil.php');
+        // header('Location: profil.php');
+        Redirect::to('profil');
         // .REDIRECT
       } else
       {
@@ -59,7 +66,6 @@ if (Input::get('submit'))
 
 
 require_once "template/header.php";
-
  ?>
 
  <script type="text/javascript">
