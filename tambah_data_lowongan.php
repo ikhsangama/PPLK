@@ -20,7 +20,7 @@ if(Input::get('tambah_data_lowongan'))
 
   // 2. Metode check
   $validation = $validation->check(array(
-    'nama_lowongan' => array(
+    'nama' => array(
       'required' => true,
       'min' => 3,
     ),
@@ -42,16 +42,21 @@ if(Input::get('tambah_data_lowongan'))
     'gaji_max' => array(
       'more_than' => 'gaji_min',
     ),
+    'tgl_expired' => array(
+      'required' => true,
+    ),
   ));
 
   // die("d");
   if($validation->getPassed())
   {
+
     $loker->create_loker(array(
       //'kolom' => nilai
-      'nama_lowongan' => Input::get('nama_lowongan'),
-      'idbidang' => Input::get('idbidang'),
-      'idtingkat_pendidikan' => Input::get('idtingkat_pendidikan'),
+      'idperusahaan' => $perusahaan_data['idperusahaan'],
+      'nama' => Input::get('nama'),
+      'idbidang' => intval(Input::get('idbidang')),
+      'idtingkat_pendidikan' => intval(Input::get('idtingkat_pendidikan')),
       'tipe' => Input::get('tipe'),
       'usia_min' => Input::get('usia_min'),
       'usia_max' => Input::get('usia_max'),
@@ -60,8 +65,20 @@ if(Input::get('tambah_data_lowongan'))
       'nama_cp' => Input::get('nama_cp'),
       'email_cp' => Input::get('email_cp'),
       'no_telp_cp' => Input::get('no_telp_cp'),
-
+      'tgl_insert' => date("Y-m-d"),
+      'tgl_expired' => Input::get('tgl_expired'),
     ));
+
+    // MENYIMPAN SESSION
+    // Menampilkan pesan flash pertama kali mendaftar
+    Session::flash('data_lowongan_baru', 'Loker perusahaan anda telah berhasil didaftarkan.');
+
+    //.MENYIMPAN SESSION
+
+    // REDIRECT jika berhasil register langsung ke profil
+    // header('Location: profil.php');
+    Redirect::to('data_lowongan');
+    // .REDIRECT
   } else
   {
     $errors = $validation->getErrors();
@@ -89,8 +106,8 @@ require_once "template/header.php"
         </div>
 
         <div class="input-field col s12">
-          <input id="nama_lowongan"  class="validate" type="text" name="nama_lowongan">
-          <label for="nama_lowongan">Nama Lowongan</label>
+          <input id="nama"  class="validate" type="text" name="nama">
+          <label for="nama">Nama Lowongan</label>
         </div>
 
         <div class="input-field col s6">
@@ -158,8 +175,7 @@ require_once "template/header.php"
         </div>
 
         <div class="input-field col s6">
-          <input id="tgl_expired"  class="datepicker" type="text" name="tgl_expired" value=
-          <?php echo date("y-m-d");?>>
+          <input id="tgl_expired"  class="datepicker" type="text" name="tgl_expired">
           <label for="tgl_expired">Akhir Lowongan</label>
         </div>
 

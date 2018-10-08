@@ -11,11 +11,6 @@ if(!$perusahaan->isLogin())
   Redirect::to('masuk');
 }
 
-if(Session::isOn('data_lowongan_baru'))
-{
-  echo Session::flash('data_lowongan_baru');
-}
-
 // $perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan')); dipindah ke init
 require_once "template/header.php"
 ?>
@@ -33,7 +28,13 @@ require_once "template/header.php"
     </a>
   </h2>
 
-  <hr><hr><br>
+  <hr>
+  <?php if(Session::isOn('data_lowongan_baru'))
+  {
+    echo Session::flash('data_lowongan_baru');
+  }
+  ?>
+  <hr><br>
 
 
 </div>
