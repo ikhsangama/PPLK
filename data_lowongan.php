@@ -19,15 +19,16 @@ require_once "template/header.php"
 
 <!--KONTEN  -->
 <div class="container">
-  <h2>Data Lowongan
+  <h3>Data Lowongan
     <a class="waves-effect waves-light btn-small red" href="tambah_data_lowongan.php">
       <i class="material-icons left">
         add
       </i>
       Tambah
     </a>
-  </h2>
+  </h3>
 
+  <!-- NOTIFIKASI -->
   <hr>
   <?php if(Session::isOn('data_lowongan_baru'))
   {
@@ -35,7 +36,47 @@ require_once "template/header.php"
   }
   ?>
   <hr><br>
+<!-- .NOTIFIKASI -->
 
+  <table class="responsive-table">
+    <thead>
+      <tr>
+          <th>Nama Lowongan</th>
+          <th>Dibuat</th>
+          <th>Diperbarui</th>
+          <th>Batas Akhir</th>
+          <th>Aksi</th>
+      </tr>
+    </thead>
+
+    <tbody>
+      <?php while($row = mysqli_fetch_array($loker_table)){ ?>
+      <tr>
+        <td>
+          <?php echo $row['nama'] ?>
+        </td>
+        <td>
+          <?php echo $row['tgl_insert'] ?>
+        </td>
+        <td>
+          <?php echo $row['tgl_update'] ?>
+        </td>
+        <td>
+          <?php echo $row['tgl_expired'] ?>
+        </td>
+        <td>
+          <a class="waves-effect waves-light btn-small green" href="detail_data_lowongan.php?idloker=<?php echo $row['idloker'] ?>">
+            <i class="material-icons left">
+              visibility
+            </i>
+            Detail
+          </a>
+        </td>
+      </tr>
+      <?php } ?>
+
+    </tbody>
+  </table>
 
 </div>
 <!--.KONTEN  -->

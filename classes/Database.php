@@ -127,7 +127,14 @@ class Database
     }
     // die($query);
     $result = $this->mysqli->query($query);
+    return $result;
+  }
 
+  public function get_table_loker($table, $idperusahaan)
+  {
+    $query = "SELECT * FROM $table WHERE idperusahaan = $idperusahaan";
+    // die($query);
+    $result = $this->mysqli->query($query);
     return $result;
   }
 

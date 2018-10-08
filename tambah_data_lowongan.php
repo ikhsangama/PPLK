@@ -66,6 +66,7 @@ if(Input::get('tambah_data_lowongan'))
       'email_cp' => Input::get('email_cp'),
       'no_telp_cp' => Input::get('no_telp_cp'),
       'tgl_insert' => date("Y-m-d"),
+      'tgl_update' => date("Y-m-d"),
       'tgl_expired' => Input::get('tgl_expired'),
     ));
 
