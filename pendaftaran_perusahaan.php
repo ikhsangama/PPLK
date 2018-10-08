@@ -15,6 +15,7 @@ if($perusahaan->isLogin()){
 // }
 $errors = array();
 
+//harus ada input dengan nama submit, kalo enggak ke skip proses validasinya
 if (Input::get('submit'))
 {
   // 1. Memanggil obj validasi
@@ -73,46 +74,151 @@ if (Input::get('submit'))
   }
 }
 
-
 require_once "template/header.php";
 
  ?>
+
+
+
+ <script type="text/javascript">
+ //MENGEMBALIKAN ERROR DARI SERVER
+ //Mengambil error report dari class validation
+ //Lalu meletakan error report pada tiap input yang salah
+ var error=<?php echo json_encode($errors); ?>;
+ console.log(error);
+ $(document).on('ready',function(){
+   $.each(error, function( index, value ) {
+     var $element=$('input[name="'+index+'"]');
+     var errmain=$element.siblings('span.main').data("error");
+     if (errmain) {
+       $('<span class="helper-text sec" data-error="'+value+'" data-success=""></span>').insertAfter($element);
+       console.log(index+' main ada');
+     }else {
+       $element.siblings('span.main').attr("data-error",value);
+       console.log('kosong');
+     }
+     $element.addClass('invalid');
+    // $('input[name="'+index+'"]').addClass('invalid');
+    // console.log(index);
+    // $('<span class="helper-text sec" data-error="'+value+'" data-success=""></span>').insertAfter('input[name="'+index+'"]');
+   });
+  });
+ </script>
+
+<!-- SCRIPT FORM VALIDATION-->
+<script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+<script type="text/javascript" src="assets/js/validation.js"></script>
+<!-- .SCRIPT FORM VALIDATION-->
+
+<main>
 <div class="container">
   <div class="row">
-    <div class="col m6 s12">
-      <h3>Daftar Penyedia Lowongan Kerja disini</h3>
-      <form class="" action="pendaftaran_perusahaan.php" method="post">
-        <label>Nama: </label>
-        <input type="text" name="nama" value=""><br>
-        <label>Password: </label>
-        <input type="password" name="password" value=""><br>
-        <label>Ulangi Password: </label>
-        <input type="password" name="password_verify" value=""><br>
-        <label>Nama Pemilik: </label>
-        <input type="text" name="nama_pemilik" value=""><br>
-        <label>Alamat: </label>
-        <input type="text" name="alamat" value=""><br>
-        <label>Kota: </label>
-        <input type="text" name="kota" value=""><br>
-        <label>Email: </label>
-        <input type="text" name="email" value=""><br>
-        <label>No Telp: </label>
-        <input type="text" name="no_telp" value=""><br>
+  <div class="section">
 
-        <input type="submit" name="submit" value="Daftar Sekarang">
-<!--MENAMPILKAN ERROR  -->
-<?php if(!empty($errors)) { ?>
-  <div id="errors">
-    <?php foreach($errors as $error){ ?>
-      <li><?php echo $error ?></li>
+    <!--MENAMPILKAN PERINGATAN ERROR DIATAS FORM UTAMA  -->
+    <div class="col l10 m10 s12 offset-l1 offset-m1">
+    <?php if(!empty($errors)) { ?>
+        <div class="card-panel red lighten-4" id="alert_panel">
+          <i class="material-icons right" id="alert_close" style="cursor:pointer">close</i>
+          <b>PERINGATAN : </b> Cek Kembali Form Yang Di Masukan
+        </div>
     <?php } ?>
   </div>
-<?php } ?>
-<!--.MENAMPILKAN ERROR  -->
-</form>
+    <!--.MENAMPILKAN ERROR  -->
+
+  </div>
+</div>
+
+  <div class="row">
+    <div class="col l10 m10 s12 offset-l1 offset-m1">
+      <div class="card az-depth-4">
+        <div class="card-content">
+        <h3>Daftar Penyedia Lowongan Kerja disini</h3>
+        <div class="divider"></div>
+
+        <form class="section" action="pendaftaran_perusahaan.php" method="post" id="formDaftarPerusahaan">
+
+          <div class="input-field">
+            <label for="nama">Nama*</label>
+            <input id="nama" name="nama" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="password">Password*</label>
+            <input id="password" name="password" type="password">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="nama_pemilik">Nama Pemilik</label>
+            <input id="nama_pemilik" name="nama_pemilik" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="alamat">Alamat</label>
+            <input id="alamat" name="alamat" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="kota">Kota</label>
+            <input id="kota" name="kota" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="no_telp">Nomer Telepon</label>
+            <input id="no_telp" name="no_telp" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <input type="hidden" name="submit" value="kekirimgan">
+          <button class="btn waves-effect waves-light" type="submit" >Submit
+            <i class="material-icons right">send</i>
+          </button>
+        </form>
+      </div>
+      </div>
     </div>
   </div>
 </div>
+</main>
+<script>
+//VALIDASI FORM CLIENT SIDE
+//Menggunakan jqueryvalidation
+//settingan untuk peletakan error ada di file assets/js/validation.js
+$("#formDaftarPerusahaan").validate({
+  rules: {
+      nama: {
+          required: true,
+      },
+      email: {
+          required: true,
+          email:true,
+
+      },
+      password: {
+        required: true,
+        minlength: 5
+      }
+},
+messages: {
+  nama:{
+      required: "Masukan Nama",
+
+  },
+  email:{
+      required: "Masukan Email",
+      email: "Format email salah"
+  },
+  password:{
+      required: "Masukan Password",
+      minlength: "Minimal 5 karakter"
+  }
+},
+});
+</script>
 <?php
   require_once"template/footer.php";
  ?>
