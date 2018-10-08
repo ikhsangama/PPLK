@@ -102,7 +102,7 @@ require_once "template/header.php"
     <form class="col s12" action="tambah_data_lowongan.php" method="post">
       <div class="row">
         <div class="input-field col s12">
-          <input disabled id="nama_perusahaan" type="text" class="validate" value=<?php echo $perusahaan_data['nama'] ?>>
+          <input disabled id="nama_perusahaan" type="text" class="validate" value="<?php echo $perusahaan_data['nama'] ?>">
           <label for="nama_perusahaan">Nama Perusahaan</label>
         </div>
 

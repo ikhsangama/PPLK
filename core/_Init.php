@@ -15,7 +15,7 @@ if(Session::isOn('perusahaan'))
  // die($perusahaan_data['idperusahaan']);
  // akses kelas lain setelah session aktif
  $loker = new Loker();
- $loker_table = $loker->get_table();
+ $loker_table = $loker->get_table($perusahaan_data['idperusahaan']);
 
  $bidang_pekerjaan = new BidangPekerjaan();
  $bidang_pekerjaan_table = $bidang_pekerjaan->get_table();

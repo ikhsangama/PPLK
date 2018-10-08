@@ -20,7 +20,7 @@ require_once "template/header.php"
 <!--KONTEN  -->
 <div class="container">
   <h3>Data Lowongan
-    <a class="waves-effect waves-light btn-small red" href="tambah_data_lowongan.php">
+    <a class="waves-effect waves-light btn-small blue" href="tambah_data_lowongan.php">
       <i class="material-icons left">
         add
       </i>

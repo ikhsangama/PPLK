@@ -18,15 +18,11 @@ class Loker
   }
 
   // Hanya mendapatkan tabel loker yang sesuai dengan perusahaannya
-  public function get_table($column="")
+  public function get_table($idperusahaan)
   {
+    $table = "loker";
     // die($idperusahaan);
-    return $this->_db->get_table('loker', $column);
-  }
-
-  public function get_data($id)
-  {
-    return $this->_db->get_info('loker','idloker', $id);
+    return $this->_db->get_table_loker($table, $idperusahaan);
   }
 
 }
