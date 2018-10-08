@@ -15,7 +15,13 @@ class BidangPekerjaan
 
   public function get_table($column="")
   {
-    return $this->_db->get_table('bidang_pekerjaan', $column);
+    $table = 'bidang_pekerjaan';
+    return $this->_db->get_table($table, $column);
+  }
+
+  public function get_data($id)
+  {
+    return $this->_db->get_info('bidang_pekerjaan','idbidang', $id);
   }
 }
 
