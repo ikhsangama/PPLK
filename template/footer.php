@@ -10,6 +10,7 @@
         $('.datepicker').datepicker({
           format: 'yyyy-mm-dd'
         });
+        $('select').material_select();
 
       });
     </script>
