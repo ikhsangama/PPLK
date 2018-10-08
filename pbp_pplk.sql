@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 29, 2018 at 03:57 AM
+-- Generation Time: Oct 08, 2018 at 07:01 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -47,6 +47,16 @@ CREATE TABLE `bidang_pekerjaan` (
   `nama` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
+--
+-- Dumping data for table `bidang_pekerjaan`
+--
+
+INSERT INTO `bidang_pekerjaan` (`idbidang`, `nama`) VALUES
+(1, 'Industri'),
+(2, 'Teknologi Informasi'),
+(3, 'Finansial'),
+(4, 'Lainnya');
+
 -- --------------------------------------------------------
 
 --
@@ -67,9 +77,9 @@ CREATE TABLE `loker` (
   `nama_cp` varchar(50) NOT NULL,
   `email_cp` varchar(50) NOT NULL,
   `no_telp_cp` varchar(50) NOT NULL,
-  `tgl_insert` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `tgl_update` datetime NOT NULL,
-  `tgl_expired` datetime NOT NULL,
+  `tgl_insert` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
+  `tgl_update` timestamp NULL DEFAULT NULL,
+  `tgl_expired` timestamp NULL DEFAULT NULL,
   `deskripsi_loker` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
@@ -104,7 +114,7 @@ CREATE TABLE `pencaker` (
 CREATE TABLE `perusahaan` (
   `idperusahaan` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
-  `password` varchar(50) NOT NULL,
+  `password` varchar(255) NOT NULL,
   `nama_pemilik` varchar(50) NOT NULL,
   `alamat` text NOT NULL,
   `kota` varchar(50) NOT NULL,
@@ -118,11 +128,7 @@ CREATE TABLE `perusahaan` (
 --
 
 INSERT INTO `perusahaan` (`idperusahaan`, `nama`, `password`, `nama_pemilik`, `alamat`, `kota`, `email`, `no_telp`, `tgl_daftar`) VALUES
-(1, '0', '$2y$10$RM8Ioy3FQlVyVxasBkpZvu20zZmaBxSlBL1u2aBYksC', 'asd', 'ad', 'ko', 'em', 'no', '2018-09-29 03:49:15'),
-(2, '0', '$2y$10$w4c.IMdAKH/Gf20SIidv5ORDLFn/4tUDMCHnT4vdT2G', 'namapw', 'alamatw', 'kotaw', 'emailw', '111', '2018-09-29 03:50:40'),
-(3, 'ee', '$2y$10$d7O55eYFljYXsCjrP2kiw.X.tvqEKO4gBmpW.H6h0YZ', 'e', 'e', 'e', 'e', 'e', '2018-09-29 08:23:38'),
-(4, 'ee', '$2y$10$PN//nCG/4.ixP/oPmyaTWefqFb9e5K3eLkbDJOyavP2', 'e', 'e', 'e', 'e', 'e', '2018-09-29 08:55:02'),
-(5, 'a', '$2y$10$LaJXvOOhIFSlCW7t2uWAmuWvyavUWwUfRRAKqIXjijK', 'a', 'a', 'a', 'a', 'a', '2018-09-29 08:55:11');
+(1, 'lllo', '$2y$10$5t1eT98DxqNZrbx9wZybnuDZ1VrUK7tBpVOw4wjXj3C68Wxmqfm/e', 'lll', '', '', 'lll@gmail.com', '', '2018-10-07 02:20:56');
 
 -- --------------------------------------------------------
 
@@ -173,6 +179,17 @@ CREATE TABLE `tingkat_pendidikan` (
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
+-- Dumping data for table `tingkat_pendidikan`
+--
+
+INSERT INTO `tingkat_pendidikan` (`idtingkat_pendidikan`, `keterangan`) VALUES
+(1, 'Diploma D3'),
+(2, 'Sarjana D4'),
+(3, 'Sarjana S1'),
+(4, 'Magister S2'),
+(5, 'Doktor S3');
+
+--
 -- Indexes for dumped tables
 --
 
@@ -192,7 +209,10 @@ ALTER TABLE `bidang_pekerjaan`
 -- Indexes for table `loker`
 --
 ALTER TABLE `loker`
-  ADD PRIMARY KEY (`idloker`);
+  ADD PRIMARY KEY (`idloker`),
+  ADD KEY `idperusahaan` (`idperusahaan`),
+  ADD KEY `idbidang` (`idbidang`),
+  ADD KEY `idtingkat_pendidikan` (`idtingkat_pendidikan`);
 
 --
 -- Indexes for table `pencaker`
@@ -238,7 +258,7 @@ ALTER TABLE `apply_loker`
 -- AUTO_INCREMENT for table `bidang_pekerjaan`
 --
 ALTER TABLE `bidang_pekerjaan`
-  MODIFY `idbidang` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idbidang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `loker`
@@ -256,7 +276,7 @@ ALTER TABLE `pencaker`
 -- AUTO_INCREMENT for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
-  MODIFY `idperusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idperusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
 -- AUTO_INCREMENT for table `riwayat_pekerjaan`
@@ -274,7 +294,19 @@ ALTER TABLE `riwayat_pendidikan`
 -- AUTO_INCREMENT for table `tingkat_pendidikan`
 --
 ALTER TABLE `tingkat_pendidikan`
-  MODIFY `idtingkat_pendidikan` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idtingkat_pendidikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- Constraints for dumped tables
+--
+
+--
+-- Constraints for table `loker`
+--
+ALTER TABLE `loker`
+  ADD CONSTRAINT `loker_ibfk_1` FOREIGN KEY (`idperusahaan`) REFERENCES `perusahaan` (`idperusahaan`),
+  ADD CONSTRAINT `loker_ibfk_2` FOREIGN KEY (`idtingkat_pendidikan`) REFERENCES `tingkat_pendidikan` (`idtingkat_pendidikan`),
+  ADD CONSTRAINT `loker_ibfk_3` FOREIGN KEY (`idbidang`) REFERENCES `bidang_pekerjaan` (`idbidang`);
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

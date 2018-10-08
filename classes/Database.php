@@ -33,13 +33,13 @@ class Database
   public function insert($table, $values = array())
   {
     // Metode implode untuk menggabungkan semua array $kolom, lalu mengeluarkan semua $kolom dan $valuenya
-    $kolom = implode(",", array_keys($values));
+    $kolom = implode(", ", array_keys($values));
     //.Metode implode untuk mengeluarkan semua $kolom dan $valuenya
     //mengambil semua values
     $valueArrays = array();
     $i = 0;
     foreach ($values as $key => $value) {
-      if (is_int($values))
+      if (is_int($value))
       {
         $valueArrays[$i] = $this->escape($value);
       }
@@ -49,10 +49,10 @@ class Database
       }
       $i++;
     }
-    //.mengambil semua values
-    $values = implode (",", $valueArrays);
+    //.mengambil semua valuearrays sebagai values yang dipisahkan dengan koma
+    $value = implode (", ", $valueArrays);
     // $query = "INSERT INTO perusahaan (nama, password) VALUES ("ikhsan", 123)";
-    $query = "INSERT INTO $table ($kolom) VALUES ($values)";
+    $query = "INSERT INTO $table ($kolom) VALUES ($value)";
     // die($query); //mengecek kueri sebelum dieksekusi dan dimasukkan ke myskl
     return $this->run($query, "masalah saat memasukkan data");
   }
