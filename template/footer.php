@@ -1,6 +1,10 @@
-  <body>
     <footer class="page-footer">
-      Ini footer PBP Tema ke-5
+      <div class="footer-copyright">
+        <div class="container">
+          © 2018 PBP
+          <a class="grey-text text-lighten-4 right" href="#!">Jumat 12/10/2018</a>
+        </div>
+      </div>
     </footer>
 
     <script>
