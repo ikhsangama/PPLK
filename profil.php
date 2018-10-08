@@ -23,11 +23,13 @@ require_once "template/header.php"
 <!--.HEADER  -->
 
 <!--KONTEN  -->
+<main>
 <div class="container">
   <h2>Hai <?php echo $perusahaan_data['nama'] ?></h2>
   <hr><hr><br>
-  
+
 </div>
+</main>
 <!--.KONTEN  -->
 
 <!--FOOTER  -->
