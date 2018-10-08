@@ -17,6 +17,14 @@ class Loker
     else return false;
   }
 
+  // Hanya mendapatkan tabel loker yang sesuai dengan perusahaannya
+  public function get_table($idperusahaan)
+  {
+    $table = "loker";
+    // die($idperusahaan);
+    return $this->_db->get_table_loker($table, $idperusahaan);
+  }
+
 }
 
 
