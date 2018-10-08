@@ -13,26 +13,59 @@ if(!$perusahaan->isLogin())
 
 $errors = array();
 
-if(Input::get('submit'))
+if(Input::get('tambah_data_lowongan'))
 {
   // 1. Memanggil obj validasi
   $validation = new Validation();
 
   // 2. Metode check
   $validation = $validation->check(array(
-    'nama' => array(
+    'nama_lowongan' => array(
       'required' => true,
       'min' => 3,
     ),
-    'nama_pemilik' => array(
+    'idbidang' => array(
       'required' => true,
-      'min' => 3,
     ),
-    'password' => array(
+    'idtingkat_pendidikan' => array(
       'required' => true,
-      'min' => 3,
+    ),
+    'usia_min' => array(
+      'less_than' => 'usia_max',
+    ),
+    'usia_max' => array(
+      'more_than' => 'usia_min',
+    ),
+    'gaji_min' => array(
+      'less_than' => 'gaji_max',
+    ),
+    'gaji_max' => array(
+      'more_than' => 'gaji_min',
     ),
   ));
+
+  // die("d");
+  if($validation->getPassed())
+  {
+    $loker->create_loker(array(
+      //'kolom' => nilai
+      'nama_lowongan' => Input::get('nama_lowongan'),
+      'idbidang' => Input::get('idbidang'),
+      'idtingkat_pendidikan' => Input::get('idtingkat_pendidikan'),
+      'tipe' => Input::get('tipe'),
+      'usia_min' => Input::get('usia_min'),
+      'usia_max' => Input::get('usia_max'),
+      'gaji_min' => Input::get('gaji_min'),
+      'gaji_max' => Input::get('gaji_max'),
+      'nama_cp' => Input::get('nama_cp'),
+      'email_cp' => Input::get('email_cp'),
+      'no_telp_cp' => Input::get('no_telp_cp'),
+
+    ));
+  } else
+  {
+    $errors = $validation->getErrors();
+  }
 }
 
 // $perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan')); dipindah ke init
@@ -61,20 +94,22 @@ require_once "template/header.php"
         </div>
 
         <div class="input-field col s6">
-          <select>
+          <select name="idbidang">
             <option value="" disabled selected>Pilih</option>
           <?php while($row = mysqli_fetch_array($bidang_pekerjaan_table)){ ?>
-            <option value="<?php echo $row['idbidang'] ?>"><?php echo $row['nama'] ?></option>
+            <option value=<?php echo $row['idbidang'] ?>>
+              <?php echo $row['nama'] ?>
+            </option>
           <?php } ?>
           </select>
           <label>Bidang Pekerjaan</label>
         </div>
 
         <div class="input-field col s6">
-          <select>
+          <select name="idtingkat_pendidikan">
             <option value="" disabled selected>Pilih</option>
           <?php while($row = mysqli_fetch_array($tingkat_pendidikan_table)){ ?>
-            <option value="<?php echo $row['idtingkat_pendidikan'] ?>">
+            <option value=<?php echo $row['idtingkat_pendidikan'] ?>>
               <?php echo $row['keterangan'] ?>
             </option>
           <?php } ?>
@@ -123,7 +158,8 @@ require_once "template/header.php"
         </div>
 
         <div class="input-field col s6">
-          <input id="tgl_expired"  class="datepicker" type="text" name="tgl_expired">
+          <input id="tgl_expired"  class="datepicker" type="text" name="tgl_expired" value=
+          <?php echo date("y-m-d");?>>
           <label for="tgl_expired">Akhir Lowongan</label>
         </div>
 
@@ -134,10 +170,21 @@ require_once "template/header.php"
 
       </div>
       <br>
-      <button class="btn waves-effect waves-light" type="submit" name="action"> Tambah Lowongan Kerja
+
+      <button type="submit" value="tambah_data_lowongan" name="tambah_data_lowongan" class="btn" > Tambah Lowongan Kerja
         <i class="material-icons right">send</i>
       </button>
       <hr>
+
+      <!--MENAMPILKAN ERROR  -->
+      <?php if(!empty($errors)) { ?>
+        <div id="errors">
+          <?php foreach($errors as $error){ ?>
+            <li><?php echo $error ?></li>
+          <?php } ?>
+        </div>
+      <?php } ?>
+      <!--.MENAMPILKAN ERROR  -->
     </form>
   </div>
 
