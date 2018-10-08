@@ -33,6 +33,9 @@ require_once "template/header.php"
   <?php if(Session::isOn('data_lowongan_baru'))
   {
     echo Session::flash('data_lowongan_baru');
+  } elseif (Session::isOn('peringatan'))
+  {
+    echo Session::flash('peringatan');
   }
   ?>
   <hr><br>

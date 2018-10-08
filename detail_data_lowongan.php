@@ -12,6 +12,14 @@ if(!$perusahaan->isLogin())
 }
 
 $loker_data = $loker->get_data(Input::get('idloker'));
+// Jika loker tidak ada di database
+if(!$loker_data)
+{
+  Session::flash('peringatan', "Detail data lowongan ". Input::get('idloker'). " tidak ditemukan");
+
+  Redirect::to('data_lowongan');
+}
+
 $bidang_pekerjaan_data = $bidang_pekerjaan->get_data($loker_data['idbidang']);
 $tingkat_pendidikan_data = $tingkat_pendidikan->get_data($loker_data['idtingkat_pendidikan']);
 // $perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan')); dipindah ke init
