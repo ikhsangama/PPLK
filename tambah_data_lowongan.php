@@ -36,12 +36,32 @@ if(Input::get('tambah_data_lowongan'))
     'usia_max' => array(
       'more_than' => 'usia_min',
     ),
+    'gaji_min' => array(
+      'less_than' => 'gaji_max',
+    ),
+    'gaji_max' => array(
+      'more_than' => 'gaji_min',
+    ),
   ));
 
   // die("d");
   if($validation->getPassed())
   {
-    die("lolos");
+    $loker->create_loker(array(
+      //'kolom' => nilai
+      'nama_lowongan' => Input::get('nama_lowongan'),
+      'idbidang' => Input::get('idbidang'),
+      'idtingkat_pendidikan' => Input::get('idtingkat_pendidikan'),
+      'tipe' => Input::get('tipe'),
+      'usia_min' => Input::get('usia_min'),
+      'usia_max' => Input::get('usia_max'),
+      'gaji_min' => Input::get('gaji_min'),
+      'gaji_max' => Input::get('gaji_max'),
+      'nama_cp' => Input::get('nama_cp'),
+      'email_cp' => Input::get('email_cp'),
+      'no_telp_cp' => Input::get('no_telp_cp'),
+
+    ));
   } else
   {
     $errors = $validation->getErrors();
@@ -138,7 +158,8 @@ require_once "template/header.php"
         </div>
 
         <div class="input-field col s6">
-          <input id="tgl_expired"  class="datepicker" type="text" name="tgl_expired">
+          <input id="tgl_expired"  class="datepicker" type="text" name="tgl_expired" value=
+          <?php echo date("y-m-d");?>>
           <label for="tgl_expired">Akhir Lowongan</label>
         </div>
 
