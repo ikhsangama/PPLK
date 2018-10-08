@@ -65,29 +65,53 @@ require_once "template/header.php"
 <main>
 <!--KONTEN  -->
 <div class="container">
-  <h2>Edit Profil <?php echo $perusahaan_data['nama'] ?> </h2>
-  <hr><hr><br>
-
-  <form class="" action="edit_profil.php" method="post">
-
-    <h5>Ubah Data</h5>
-    <label>Nama: </label>
-    <input type="text" name="nama" value=<?php echo $perusahaan_data['nama'] ?>><br>
-    <label>Nama Pemilik: </label>
-    <input type="text" name="nama_pemilik" value=<?php echo $perusahaan_data['nama_pemilik'] ?>><br>
-    <label>Alamat: </label>
-    <input type="text" name="alamat" value=<?php echo $perusahaan_data['alamat'] ?>><br>
-    <label>Kota: </label>
-    <input type="text" name="kota" value=<?php echo $perusahaan_data['kota'] ?>><br>
-    <label>Email: </label>
-    <input type="text" name="kota" value=<?php echo $perusahaan_data['email'] ?> disabled><br>
-    <label>No Telp: </label>
-    <input type="text" name="no_telp" value=<?php echo $perusahaan_data['no_telp'] ?>><br>
-
-    <h6>Konfirmasi Perubahan: </h6>
-    <input type="password" name="password" value="" placeholder="password"><br>
-
-    <input type="submit" name="submit" value="Simpan">
+  <div class="row">
+    <div class="col l12 m12 s12">
+      <div class="card-panel">
+        <h3>Edit Profil <?php echo $perusahaan_data['nama'] ?> </h3>
+        <div class="divider"></div>
+        <form class="section" action="edit_profil.php" method="post">
+          <h5>Ubah Data</h5>
+          <div class="input-field">
+            <label for="nama">Nama</label>
+            <input id="nama" name="nama" type="text" value=<?php echo $perusahaan_data['nama'] ?>>
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="nama_pemilik">Nama Pemilik</label>
+            <input id="nama_pemilik" name="nama_pemilik" type="text" value=<?php echo $perusahaan_data['nama_pemilik'] ?>>
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="alamat">Alamat</label>
+            <input id="alamat" name="alamat" type="text" value=<?php echo $perusahaan_data['alamat'] ?>>
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="kota">Kota</label>
+            <input id="kota" name="kota" type="text" value=<?php echo $perusahaan_data['kota'] ?>>
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email" value=<?php echo $perusahaan_data['email'] ?> disabled>
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <div class="input-field">
+            <label for="no_telp">Nomor Telepon</label>
+            <input id="no_telp" name="no_telp" type="text" value=<?php echo $perusahaan_data['no_telp'] ?>>
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <h6>Konfirmasi Perubahan</h6>
+          <div class="input-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit" >Masuk
+            <i class="material-icons right">send</i>
+          </button>
+          <input type="hidden" name="submit" value="Simpan">
 
     <!--MENAMPILKAN ERROR  -->
     <?php if(!empty($errors)) { ?>
@@ -99,7 +123,10 @@ require_once "template/header.php"
     <?php } ?>
     <!--.MENAMPILKAN ERROR  -->
 
-  </form>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 </main>
 <!--.KONTEN  -->

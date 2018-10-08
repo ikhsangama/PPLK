@@ -10,22 +10,12 @@
     <script src="assets/js/materialize.min.js"></script>
 
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
-    <style media="screen">
-      body {
-        display: flex;
-        min-height: 100vh;
-        flex-direction: column;
-      }
-
-      main {
-        flex: 1 0 auto;
-      }
-    </style>
+    <link href="assets/css/tema.css" rel="stylesheet">
   </head>
   <body>
     <header>
-      <nav>
-          <div class="container nav-wrapper">
+      <nav class="serious-error">
+          <div class="container nav-wrapper ">
             <a href="#!" class="brand-logo">PPLK</a>
             <a href="#" data-target="mobile-demo" class="sidenav-trigger"><i class="material-icons">menu</i></a>
             <ul class="right hide-on-med-and-down">
@@ -35,9 +25,9 @@
               <li><a href="profil.php"><?php echo $perusahaan_data['nama'] ?></a></li>
               <li><a href="keluar.php">Keluar</a></li>
               <?php } else {?>
-              <li><a href="masuk.php">Masuk</a></li>
               <li><a href="pendaftaran_pencaker.php">Pendaftaran Pencaker</a></li>
               <li><a href="pendaftaran_perusahaan.php">Pendaftaran Perusahaan</a></li>
+              <li><a href="masuk.php">Masuk</a></li>
               <?php } ?>
             </ul>
           </div>

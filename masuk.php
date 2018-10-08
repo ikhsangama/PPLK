@@ -70,16 +70,28 @@ require_once "template/header.php";
  <main>
 
 <div class="container">
-  <h2>Masuk Penyedia Lowongan Kerja</h2>
-  <hr><hr><br>
+  <div class="row">
+    <div class="col l12 m12 s12">
+      <div class="card-panel">
+        <h3>Masuk Penyedia Lowongan Kerja</h3>
+        <div class="divider"></div>
 
-  <form class="container" action="masuk.php" method="post">
-    <label>Email: </label>
-    <input type="text" name="email" value=""><br>
-    <label>Password: </label>
-    <input type="password" name="password" value=""><br>
+        <form class="section" action="masuk.php" method="post">
+          <div class="input-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
 
-    <input type="submit" name="submit" value="Masuk Sekarang">
+          <div class="input-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <span class="helper-text main" data-error="" data-success=""></span>
+          </div>
+          <button class="btn waves-effect waves-light" type="submit" >Masuk
+            <i class="material-icons right">send</i>
+          </button>
+          <input type="hidden" name="submit" value="Masuk Sekarang">
   <!--MENAMPILKAN ERROR  -->
   <?php if(!empty($errors)) { ?>
     <div id="errors">
@@ -89,7 +101,10 @@ require_once "template/header.php";
     </div>
   <?php } ?>
   <!--.MENAMPILKAN ERROR  -->
-  </form>
+        </form>
+      </div>
+    </div>
+  </div>
 </div>
 
 </main>
