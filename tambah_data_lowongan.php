@@ -92,6 +92,7 @@ require_once "template/header.php"
 <!--.HEADER  -->
 
 <!--KONTEN  -->
+<main>
 <div class="container">
   <h3>Form</h3>
   <h4>Tambah Data Lowongan</h4>
@@ -205,7 +206,7 @@ require_once "template/header.php"
   </div>
 
 </div>
-
+</main>
 <!--.KONTEN  -->
 
 <!--FOOTER  -->

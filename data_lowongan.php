@@ -18,6 +18,7 @@ require_once "template/header.php"
 <!--.HEADER  -->
 
 <!--KONTEN  -->
+<main>
 <div class="container">
   <h2>Data Lowongan
     <a class="waves-effect waves-light btn-small red" href="tambah_data_lowongan.php">
@@ -38,6 +39,7 @@ require_once "template/header.php"
 
 
 </div>
+</main>
 <!--.KONTEN  -->
 
 <!--FOOTER  -->

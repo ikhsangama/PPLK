@@ -62,7 +62,7 @@ require_once "template/header.php"
 ?>
 
 <!--.HEADER  -->
-
+<main>
 <!--KONTEN  -->
 <div class="container">
   <h2>Edit Profil <?php echo $perusahaan_data['nama'] ?> </h2>
@@ -101,7 +101,7 @@ require_once "template/header.php"
 
   </form>
 </div>
-
+</main>
 <!--.KONTEN  -->
 
 <!--FOOTER  -->

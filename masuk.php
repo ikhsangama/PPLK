@@ -67,6 +67,7 @@ if (Input::get('submit'))
 
 require_once "template/header.php";
  ?>
+ <main>
 
 <div class="container">
   <h2>Masuk Penyedia Lowongan Kerja</h2>
@@ -91,7 +92,7 @@ require_once "template/header.php";
   </form>
 </div>
 
-
+</main>
 <?php
   require_once"template/footer.php";
  ?>

@@ -77,42 +77,73 @@ if (Input::get('submit'))
 require_once "template/header.php";
 
  ?>
+<main>
 <div class="container">
   <div class="row">
-    <div class="col m6 s12">
+    <div class="col l12 m12 s12">
+      <div class="card-panel">
       <h3>Daftar Penyedia Lowongan Kerja disini</h3>
-      <form class="" action="pendaftaran_perusahaan.php" method="post">
-        <label>Nama: </label>
-        <input type="text" name="nama" value=""><br>
-        <label>Password: </label>
-        <input type="password" name="password" value=""><br>
-        <label>Ulangi Password: </label>
-        <input type="password" name="password_verify" value=""><br>
-        <label>Nama Pemilik: </label>
-        <input type="text" name="nama_pemilik" value=""><br>
-        <label>Alamat: </label>
-        <input type="text" name="alamat" value=""><br>
-        <label>Kota: </label>
-        <input type="text" name="kota" value=""><br>
-        <label>Email: </label>
-        <input type="text" name="email" value=""><br>
-        <label>No Telp: </label>
-        <input type="text" name="no_telp" value=""><br>
-
-        <input type="submit" name="submit" value="Daftar Sekarang">
-<!--MENAMPILKAN ERROR  -->
-<?php if(!empty($errors)) { ?>
-  <div id="errors">
-    <?php foreach($errors as $error){ ?>
-      <li><?php echo $error ?></li>
-    <?php } ?>
-  </div>
-<?php } ?>
-<!--.MENAMPILKAN ERROR  -->
-</form>
+      <div class="divider"></div>
+      <form class="section" action="pendaftaran_perusahaan.php" method="post">
+        <div class="input-field">
+            <label for="nama">Nama</label>
+            <input id="nama" name="nama" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+        </div>
+        <div class="input-field">
+            <label for="password">Password</label>
+            <input id="password" name="password" type="password">
+            <span class="helper-text main" data-error="" data-success=""></span>
+        </div>
+        <div class="input-field">
+            <label for="password_verify">Konfirmasi Password</label>
+            <input id="password_verify" name="password_verify" type="password">
+            <span class="helper-text main" data-error="" data-success=""></span>
+        </div>
+        <div class="input-field">
+            <label for="nama_pemilik">Nama Pemilik</label>
+            <input id="nama_pemilik" name="nama_pemilik" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+        </div>
+        <div class="input-field">
+            <label for="alamat">Alamat</label>
+            <input id="alamat" name="alamat" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+        </div>
+        <div class="input-field">
+            <label for="kota">Kota</label>
+            <input id="kota" name="kota" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+        </div>
+        <div class="input-field">
+            <label for="email">Email</label>
+            <input id="email" name="email" type="email">
+            <span class="helper-text main" data-error="" data-success=""></span>
+        </div>
+        <div class="input-field">
+            <label for="no_telp">Nomor Telepom</label>
+            <input id="no_telp" name="no_telp" type="text">
+            <span class="helper-text main" data-error="" data-success=""></span>
+        </div>
+        <button class="btn waves-effect waves-light" type="submit" >Daftar Sekarang
+            <i class="material-icons right">send</i>
+        </button>
+        <input type="hidden" name="submit" value="Daftar Sekarang">
+          <!--MENAMPILKAN ERROR  -->
+          <?php if(!empty($errors)) { ?>
+            <div id="errors">
+              <?php foreach($errors as $error){ ?>
+                <li><?php echo $error ?></li>
+              <?php } ?>
+            </div>
+          <?php } ?>
+          <!--.MENAMPILKAN ERROR  -->
+      </form>
+      </div>
     </div>
   </div>
 </div>
+</main>
 <?php
   require_once"template/footer.php";
  ?>
