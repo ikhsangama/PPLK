@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2018 at 07:01 AM
+-- Generation Time: Oct 08, 2018 at 11:22 AM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -69,19 +69,33 @@ CREATE TABLE `loker` (
   `nama` varchar(50) NOT NULL,
   `idbidang` int(11) NOT NULL,
   `idtingkat_pendidikan` int(11) NOT NULL,
-  `tipe` varchar(50) NOT NULL,
-  `usia_min` int(50) NOT NULL,
-  `usia_max` int(50) NOT NULL,
-  `gaji_min` int(50) NOT NULL,
-  `gaji_max` int(50) NOT NULL,
-  `nama_cp` varchar(50) NOT NULL,
-  `email_cp` varchar(50) NOT NULL,
-  `no_telp_cp` varchar(50) NOT NULL,
-  `tgl_insert` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `tgl_update` timestamp NULL DEFAULT NULL,
-  `tgl_expired` timestamp NULL DEFAULT NULL,
+  `tipe` varchar(50) DEFAULT NULL,
+  `usia_min` int(50) DEFAULT NULL,
+  `usia_max` int(50) DEFAULT NULL,
+  `gaji_min` int(50) DEFAULT NULL,
+  `gaji_max` int(50) DEFAULT NULL,
+  `nama_cp` varchar(50) DEFAULT NULL,
+  `email_cp` varchar(50) DEFAULT NULL,
+  `no_telp_cp` varchar(50) DEFAULT NULL,
+  `tgl_insert` date DEFAULT NULL,
+  `tgl_update` date DEFAULT NULL,
+  `tgl_expired` date DEFAULT NULL,
   `deskripsi_loker` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `loker`
+--
+
+INSERT INTO `loker` (`idloker`, `idperusahaan`, `nama`, `idbidang`, `idtingkat_pendidikan`, `tipe`, `usia_min`, `usia_max`, `gaji_min`, `gaji_max`, `nama_cp`, `email_cp`, `no_telp_cp`, `tgl_insert`, `tgl_update`, `tgl_expired`, `deskripsi_loker`) VALUES
+(5, 2, 'oooo', 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-10-08', NULL, NULL, ''),
+(6, 2, 'lll', 4, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', '0000-00-00', '2018-10-08', ''),
+(7, 2, 'oooo', 3, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', '2018-10-08', '2018-10-09', ''),
+(8, 2, 'oooo', 3, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-09', ''),
+(9, 2, 'opop', 3, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '0000-00-00', ''),
+(10, 2, 'nnn', 3, 3, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-09', ''),
+(11, 2, 'nnn', 3, 3, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-09', ''),
+(12, 2, 'lolo', 4, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-13', '');
 
 -- --------------------------------------------------------
 
@@ -128,7 +142,8 @@ CREATE TABLE `perusahaan` (
 --
 
 INSERT INTO `perusahaan` (`idperusahaan`, `nama`, `password`, `nama_pemilik`, `alamat`, `kota`, `email`, `no_telp`, `tgl_daftar`) VALUES
-(1, 'lllo', '$2y$10$5t1eT98DxqNZrbx9wZybnuDZ1VrUK7tBpVOw4wjXj3C68Wxmqfm/e', 'lll', '', '', 'lll@gmail.com', '', '2018-10-07 02:20:56');
+(1, 'lllo', '$2y$10$5t1eT98DxqNZrbx9wZybnuDZ1VrUK7tBpVOw4wjXj3C68Wxmqfm/e', 'lll', '', '', 'lll@gmail.com', '', '2018-10-07 02:20:56'),
+(2, 'ppp', '$2y$10$7G1Ksn5M3.2OXeq59VVLaOa9dBfYyjGY8TpHx4l27aUDsHi9T0i8C', '', '', '', 'ppp@gmail.com', '', '2018-10-08 13:05:42');
 
 -- --------------------------------------------------------
 
@@ -264,7 +279,7 @@ ALTER TABLE `bidang_pekerjaan`
 -- AUTO_INCREMENT for table `loker`
 --
 ALTER TABLE `loker`
-  MODIFY `idloker` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idloker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
 
 --
 -- AUTO_INCREMENT for table `pencaker`
@@ -276,7 +291,7 @@ ALTER TABLE `pencaker`
 -- AUTO_INCREMENT for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
-  MODIFY `idperusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `idperusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `riwayat_pekerjaan`

@@ -42,6 +42,9 @@ if(Input::get('tambah_data_lowongan'))
     'gaji_max' => array(
       'more_than' => 'gaji_min',
     ),
+    'tgl_expired' => array(
+      'required' => true,
+    ),
   ));
 
   // die("d");
@@ -62,9 +65,20 @@ if(Input::get('tambah_data_lowongan'))
       'nama_cp' => Input::get('nama_cp'),
       'email_cp' => Input::get('email_cp'),
       'no_telp_cp' => Input::get('no_telp_cp'),
-      'tgl_update' => time(),
+      'tgl_insert' => date("Y-m-d"),
       'tgl_expired' => Input::get('tgl_expired'),
     ));
+
+    // MENYIMPAN SESSION
+    // Menampilkan pesan flash pertama kali mendaftar
+    Session::flash('data_lowongan_baru', 'Loker perusahaan anda telah berhasil didaftarkan.');
+
+    //.MENYIMPAN SESSION
+
+    // REDIRECT jika berhasil register langsung ke profil
+    // header('Location: profil.php');
+    Redirect::to('data_lowongan');
+    // .REDIRECT
   } else
   {
     $errors = $validation->getErrors();
