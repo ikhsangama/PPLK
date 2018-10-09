@@ -22,5 +22,7 @@ if(Session::isOn('perusahaan'))
 
  $tingkat_pendidikan = new TingkatPendidikan();
  $tingkat_pendidikan_table = $tingkat_pendidikan->get_table();
+
+ $apply_loker = new ApplyLoker();
 }
 ?>

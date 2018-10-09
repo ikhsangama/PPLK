@@ -137,6 +137,19 @@ class Database
     return $this->run($query, "masalah saat menghapus data");
   }
 
+  public function get_table_leftjoin($lefttable, $righttable, $leftid, $rightid, $condcolumn, $condvalue)
+  {
+    // SELECT * FROM `apply_loker`
+    // LEFT JOIN `pencaker`
+    // ON apply_loker.idpencaker = pencaker.idpencaker
+    // WHERE apply_loker.idloker=15
+
+    $query = "SELECT * FROM $lefttable LEFT JOIN $righttable ON $lefttable.$leftid = $righttable.$rightid WHERE $lefttable.$condcolumn = $condvalue";
+    // die($query);
+    $result = $this->mysqli->query($query);
+    return $result;
+  }
+
 }
 
  ?>

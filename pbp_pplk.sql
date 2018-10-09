@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 08, 2018 at 11:22 AM
+-- Generation Time: Oct 09, 2018 at 08:37 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -32,9 +32,21 @@ CREATE TABLE `apply_loker` (
   `idapply` int(11) NOT NULL,
   `idloker` int(11) NOT NULL,
   `idpencaker` int(11) NOT NULL,
-  `tgl_apply` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `status` varchar(50) NOT NULL
+  `tgl_apply` date DEFAULT NULL,
+  `status` set('Proses Seleksi','Diterima','Ditolak') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `apply_loker`
+--
+
+INSERT INTO `apply_loker` (`idapply`, `idloker`, `idpencaker`, `tgl_apply`, `status`) VALUES
+(1, 15, 1, '2018-10-09', 'Ditolak'),
+(2, 15, 2, '2018-10-09', 'Proses Seleksi'),
+(3, 16, 3, '2018-10-09', 'Diterima'),
+(4, 16, 1, '2018-10-10', 'Ditolak'),
+(5, 15, 3, '2018-10-09', 'Proses Seleksi'),
+(6, 15, 4, '2018-10-10', 'Diterima');
 
 -- --------------------------------------------------------
 
@@ -80,7 +92,7 @@ CREATE TABLE `loker` (
   `tgl_insert` date DEFAULT NULL,
   `tgl_update` date DEFAULT NULL,
   `tgl_expired` date DEFAULT NULL,
-  `deskripsi_loker` text NOT NULL
+  `deskripsi_loker` text
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -88,14 +100,11 @@ CREATE TABLE `loker` (
 --
 
 INSERT INTO `loker` (`idloker`, `idperusahaan`, `nama`, `idbidang`, `idtingkat_pendidikan`, `tipe`, `usia_min`, `usia_max`, `gaji_min`, `gaji_max`, `nama_cp`, `email_cp`, `no_telp_cp`, `tgl_insert`, `tgl_update`, `tgl_expired`, `deskripsi_loker`) VALUES
-(5, 2, 'oooo', 1, 3, NULL, NULL, NULL, NULL, NULL, NULL, NULL, NULL, '2018-10-08', NULL, NULL, ''),
-(6, 2, 'lll', 4, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', '0000-00-00', '2018-10-08', ''),
-(7, 2, 'oooo', 3, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', '2018-10-08', '2018-10-09', ''),
-(8, 2, 'oooo', 3, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-09', ''),
-(9, 2, 'opop', 3, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '0000-00-00', ''),
-(10, 2, 'nnn', 3, 3, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-09', ''),
 (11, 2, 'nnn', 3, 3, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-09', ''),
-(12, 2, 'lolo', 4, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-13', '');
+(12, 2, 'lolo', 4, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-13', ''),
+(13, 2, 'kkk', 1, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-09', ''),
+(15, 1, 'Employee Relation', 1, 3, 'Full Time', 20, 30, 1000000, 6000000, 'Ikhsan', 'ikhsangama@gmail.com', '09090909', '2018-10-08', '2018-10-09', '2018-10-11', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.              '),
+(16, 1, 'OA Staff', 2, 1, 'Full Time', 20, 25, 100000, 1000000, 'Ikhsan', 'ikhsangama@gmail.com', '0809090909', '2018-10-09', '2018-10-09', '2018-10-31', 'Lorem');
 
 -- --------------------------------------------------------
 
@@ -107,17 +116,27 @@ CREATE TABLE `pencaker` (
   `idpencaker` int(11) NOT NULL,
   `nama` varchar(50) NOT NULL,
   `password` varchar(50) NOT NULL,
-  `jenis_kelamin` varchar(50) NOT NULL,
+  `jenis_kelamin` set('Laki-laki','Perempuan') NOT NULL,
   `tempat_lahir` varchar(50) NOT NULL,
   `tanggal_lahir` date NOT NULL,
   `alamat` varchar(50) NOT NULL,
   `kota` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `no_telp` varchar(50) NOT NULL,
-  `foto` varchar(50) NOT NULL,
+  `foto` varchar(50) NOT NULL DEFAULT 'uploads/anonim.png',
   `bidang_pekerjaan` varchar(50) NOT NULL,
-  `tgl_daftar` timestamp NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tgl_daftar` date NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
+
+--
+-- Dumping data for table `pencaker`
+--
+
+INSERT INTO `pencaker` (`idpencaker`, `nama`, `password`, `jenis_kelamin`, `tempat_lahir`, `tanggal_lahir`, `alamat`, `kota`, `email`, `no_telp`, `foto`, `bidang_pekerjaan`, `tgl_daftar`) VALUES
+(1, 'Andi Irwan', 'ce0e5bf55e4f71749eade7a8b95c4e46', 'Laki-laki', 'Semarang', '1994-10-09', 'Jl Tejosari Raya perum Grafika Citra Sentosa B1/2', 'Semarang', 'andi_irwan@gmail.com', '0809090909', 'uploads/foto1.jpg', 'Seniman', '2018-10-09'),
+(2, 'Iman Setya', '5be9a68073f66a56554e25614e9f1c9a', 'Laki-laki', 'Semarang', '1994-10-09', 'Jl. Semarang', 'Semarang', 'iman@gmail.com', '0809090909', 'uploads/anonim.png', 'Developer', '2018-10-09'),
+(3, 'Ikhsan Wisnuadji', '4e9194a3bb65ab53e41247480905c391', 'Laki-laki', 'Semarang', '1994-10-09', 'Jl. Semarang raya', 'Semarang', 'ikhsan@gmail.com', '08090909', 'uploads/anonim.png', 'Developer', '2018-10-09'),
+(4, 'Athalia', 'athalia', 'Perempuan', 'Semarang', '1994-10-09', 'Jl. Semarang', 'Semarang', 'athalia@gmail.com', '08090909', 'uploads/anonim.png', 'Project Manajer', '2018-10-09');
 
 -- --------------------------------------------------------
 
@@ -134,7 +153,7 @@ CREATE TABLE `perusahaan` (
   `kota` varchar(50) NOT NULL,
   `email` varchar(50) NOT NULL,
   `no_telp` varchar(50) NOT NULL,
-  `tgl_daftar` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP
+  `tgl_daftar` date DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -142,8 +161,8 @@ CREATE TABLE `perusahaan` (
 --
 
 INSERT INTO `perusahaan` (`idperusahaan`, `nama`, `password`, `nama_pemilik`, `alamat`, `kota`, `email`, `no_telp`, `tgl_daftar`) VALUES
-(1, 'lllo', '$2y$10$5t1eT98DxqNZrbx9wZybnuDZ1VrUK7tBpVOw4wjXj3C68Wxmqfm/e', 'lll', '', '', 'lll@gmail.com', '', '2018-10-07 02:20:56'),
-(2, 'ppp', '$2y$10$7G1Ksn5M3.2OXeq59VVLaOa9dBfYyjGY8TpHx4l27aUDsHi9T0i8C', '', '', '', 'ppp@gmail.com', '', '2018-10-08 13:05:42');
+(1, 'PT Transcosmos Indonesia', '$2y$10$5t1eT98DxqNZrbx9wZybnuDZ1VrUK7tBpVOw4wjXj3C68Wxmqfm/e', 'Ikhsan', 'RDTX Tower, Jl. Gd. RDTX Tower Lt.7 Jl. Prof. Dr. Satrio Kav E4, Mega Kuningan, Jakarta Selatan', 'Jakarta', 'lll@gmail.com', '080989999', '2018-10-07'),
+(2, 'ppp', '$2y$10$7G1Ksn5M3.2OXeq59VVLaOa9dBfYyjGY8TpHx4l27aUDsHi9T0i8C', '', '', '', 'ppp@gmail.com', '', '2018-10-08');
 
 -- --------------------------------------------------------
 
@@ -212,7 +231,9 @@ INSERT INTO `tingkat_pendidikan` (`idtingkat_pendidikan`, `keterangan`) VALUES
 -- Indexes for table `apply_loker`
 --
 ALTER TABLE `apply_loker`
-  ADD PRIMARY KEY (`idapply`);
+  ADD PRIMARY KEY (`idapply`),
+  ADD KEY `idloker` (`idloker`),
+  ADD KEY `idpencaker` (`idpencaker`);
 
 --
 -- Indexes for table `bidang_pekerjaan`
@@ -267,7 +288,7 @@ ALTER TABLE `tingkat_pendidikan`
 -- AUTO_INCREMENT for table `apply_loker`
 --
 ALTER TABLE `apply_loker`
-  MODIFY `idapply` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idapply` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `bidang_pekerjaan`
@@ -279,13 +300,13 @@ ALTER TABLE `bidang_pekerjaan`
 -- AUTO_INCREMENT for table `loker`
 --
 ALTER TABLE `loker`
-  MODIFY `idloker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=13;
+  MODIFY `idloker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
 
 --
 -- AUTO_INCREMENT for table `pencaker`
 --
 ALTER TABLE `pencaker`
-  MODIFY `idpencaker` int(11) NOT NULL AUTO_INCREMENT;
+  MODIFY `idpencaker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `perusahaan`
@@ -314,6 +335,13 @@ ALTER TABLE `tingkat_pendidikan`
 --
 -- Constraints for dumped tables
 --
+
+--
+-- Constraints for table `apply_loker`
+--
+ALTER TABLE `apply_loker`
+  ADD CONSTRAINT `apply_loker_ibfk_1` FOREIGN KEY (`idloker`) REFERENCES `loker` (`idloker`),
+  ADD CONSTRAINT `apply_loker_ibfk_2` FOREIGN KEY (`idpencaker`) REFERENCES `pencaker` (`idpencaker`);
 
 --
 -- Constraints for table `loker`
