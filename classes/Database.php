@@ -130,12 +130,11 @@ class Database
     return $result;
   }
 
-  public function get_table_loker($table, $idperusahaan)
+  public function destroy($table, $column, $id)
   {
-    $query = "SELECT * FROM $table WHERE idperusahaan = $idperusahaan";
-    // die($query);
-    $result = $this->mysqli->query($query);
-    return $result;
+    $query = "DELETE FROM $table WHERE $column = $id";
+    // die($query); //mengecek kueri sebelum dieksekusi dan dimasukkan ke myskl
+    return $this->run($query, "masalah saat menghapus data");
   }
 
 }

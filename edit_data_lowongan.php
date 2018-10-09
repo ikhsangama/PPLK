@@ -81,7 +81,7 @@ if(Input::get('edit_data_lowongan'))
 
     // MENYIMPAN SESSION
     // Menampilkan pesan flash pertama kali mendaftar
-    Session::flash('data_lowongan_baru', 'Loker perusahaan anda telah berhasil diperbarui.');
+    Session::flash('sukses', 'Loker perusahaan anda telah berhasil diperbarui.');
 
     //.MENYIMPAN SESSION
 

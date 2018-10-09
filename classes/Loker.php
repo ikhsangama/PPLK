@@ -33,7 +33,12 @@ class Loker
   {
     if($this->_db->update('loker', 'idloker', $id, $values)) return true;
     else return false;
+  }
 
+  public function hapus_loker($id)
+  {
+    if($this->_db->destroy('loker', 'idloker', $id)) return true;
+    else return false;
   }
 
 }

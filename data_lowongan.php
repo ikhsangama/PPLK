@@ -31,9 +31,9 @@ require_once "template/header.php"
 
     <!-- NOTIFIKASI -->
     <hr>
-    <?php if(Session::isOn('data_lowongan_baru'))
+    <?php if(Session::isOn('sukses'))
     {
-      echo Session::flash('data_lowongan_baru');
+      echo Session::flash('sukses');
     } elseif (Session::isOn('peringatan'))
     {
       echo Session::flash('peringatan');
