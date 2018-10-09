@@ -12,7 +12,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link href="assets/css/tema.css" rel="stylesheet">
   </head>
-  <body>
+  <body class="indigo lighten-5">
     <header>
       <nav class="serious-error">
           <div class="container nav-wrapper ">

@@ -11,9 +11,18 @@ if(!$perusahaan->isLogin())
   Redirect::to('masuk');
 }
 
+$loker_data = $loker->get_data(Input::get('idloker'));
+// Jika loker tidak ada di database
+if(!$loker_data)
+{
+  Session::flash('peringatan', "Detail data lowongan ". Input::get('idloker'). " tidak ditemukan");
+
+  Redirect::to('data_lowongan');
+}
+
 $errors = array();
 
-if(Input::get('tambah_data_lowongan'))
+if(Input::get('edit_data_lowongan'))
 {
   // 1. Memanggil obj validasi
   $validation = new Validation();
@@ -51,7 +60,7 @@ if(Input::get('tambah_data_lowongan'))
   if($validation->getPassed())
   {
 
-    $loker->create_loker(array(
+    $loker->update_loker(array(
       //'kolom' => nilai
       'idperusahaan' => $perusahaan_data['idperusahaan'],
       'nama' => Input::get('nama'),
@@ -65,15 +74,14 @@ if(Input::get('tambah_data_lowongan'))
       'nama_cp' => Input::get('nama_cp'),
       'email_cp' => Input::get('email_cp'),
       'no_telp_cp' => Input::get('no_telp_cp'),
-      'tgl_insert' => date("Y-m-d"),
       'tgl_update' => date("Y-m-d"),
       'tgl_expired' => Input::get('tgl_expired'),
       'deskripsi_loker' => Input::get('deskripsi_loker'),
-    ));
+    ), $loker_data['idloker']);
 
     // MENYIMPAN SESSION
     // Menampilkan pesan flash pertama kali mendaftar
-    Session::flash('data_lowongan_baru', 'Loker perusahaan anda telah berhasil didaftarkan.');
+    Session::flash('data_lowongan_baru', 'Loker perusahaan anda telah berhasil diperbarui.');
 
     //.MENYIMPAN SESSION
 
@@ -99,7 +107,7 @@ require_once "template/header.php"
   <div class="row">
     <div class="col l12 m12 s12">
       <div class="card-panel">
-        <h4>Tambah Data Lowongan</h4>
+        <h4>Edit Data Lowongan</h4>
 
         <div class="divider"></div>
         <!--MENAMPILKAN ERROR  -->
@@ -113,7 +121,7 @@ require_once "template/header.php"
         <!--.MENAMPILKAN ERROR  -->
         <div class="divider"></div>
 
-        <form class="section" action="tambah_data_lowongan.php" method="post">
+        <form class="section" action="edit_data_lowongan.php?idloker=<?php echo $loker_data['idloker'] ?>" method="post">
           <div class="row">
             <div class="input-field col s12">
               <label for="nama_perusahaan">Nama Perusahaan</label>
@@ -124,7 +132,7 @@ require_once "template/header.php"
           <div class="row">
             <div class="input-field col s12">
               <label for="nama">Nama Lowongan</label>
-              <input id="nama" name="nama" type="text" autofocus>
+              <input id="nama" name="nama" type="text" autofocus value="<?php echo $loker_data['nama'] ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
@@ -133,7 +141,11 @@ require_once "template/header.php"
               <select name="idbidang" id="idbidang">
                 <option value="" disabled selected>Pilih</option>
               <?php while($row = mysqli_fetch_array($bidang_pekerjaan_table)){ ?>
-                <option value=<?php echo $row['idbidang'] ?>><?php echo $row['nama'] ?></option>
+                <?php if ($row['idbidang']==$loker_data['idbidang']){ ?>
+                  <option value=<?php echo $row['idbidang'] ?> selected><?php echo $row['nama'] ?></option>
+                <?php } else{ ?>
+                  <option value=<?php echo $row['idbidang'] ?>><?php echo $row['nama'] ?></option>
+                <?php } ?>
               <?php } ?>
               </select>
               <label>Bidang Pekerjaan</label>
@@ -143,7 +155,11 @@ require_once "template/header.php"
               <select name="idtingkat_pendidikan" id="idtingkat_pendidikan">
                 <option value="" disabled selected>Pilih</option>
               <?php while($row = mysqli_fetch_array($tingkat_pendidikan_table)){ ?>
-                <option value=<?php echo $row['idtingkat_pendidikan'] ?>><?php echo $row['keterangan'] ?></option>
+                <?php if($row['idtingkat_pendidikan']==$loker_data['idtingkat_pendidikan']) {?>
+                  <option value=<?php echo $row['idtingkat_pendidikan'] ?> selected><?php echo $row['keterangan'] ?></option>
+                <?php } else {?>
+                  <option value=<?php echo $row['idtingkat_pendidikan'] ?>><?php echo $row['keterangan'] ?></option>
+                <?php }?>
               <?php } ?>
               </select>
               <label>Tingkat Pendidikan</label>
@@ -153,74 +169,76 @@ require_once "template/header.php"
           <div class="row">
             <div class="input-field col s6">
               <label for="tipe">Tipe</label>
-              <input id="tipe" name="tipe" type="text">
+              <input id="tipe" name="tipe" type="text" value="<?php echo $loker_data['tipe'] ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
               <label for="usia_min">Usia Min</label>
-              <input id="usia_min" name="usia_min" type="number" class="validate" type="number"  min="0" max="80">
+              <input id="usia_min" name="usia_min" type="number" class="validate" type="number"  min="0" max="80" value="<?php echo $loker_data['usia_min'] ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
             <div class="input-field col s6">
               <label for="usia_max">Usia Maximum</label>
-              <input id="usia_max" name="usia_max" type="number" class="validate" type="number"  min="0" max="80">
+              <input id="usia_max" name="usia_max" type="number" class="validate" type="number"  min="0" max="80" value="<?php echo $loker_data['usia_max'] ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col l6">
               <label for="gaji_min">Gaji Minimum</label>
-              <input id="gaji_min" name="gaji_min" type="number" class="validate" type="number"  min="0" max="100000000" step="100000">
+              <input id="gaji_min" name="gaji_min" type="number" class="validate" type="number"  min="0" max="100000000" step="100000" value="<?php echo $loker_data['gaji_min'] ?>" >
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
             <div class="input-field col l6">
               <label for="gaji_max">Gaji Maksimum</label>
-              <input id="gaji_max" name="gaji_max" type="number" class="validate" type="number"  min="0" max="100000000" step="100000">
+              <input id="gaji_max" name="gaji_max" type="number" class="validate" type="number"  min="0" max="100000000" step="100000" value="<?php echo $loker_data['gaji_max'] ?>" >
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
               <label for="nama_cp">Kontak Nama</label>
-              <input id="nama_cp" name="nama_cp" type="text">
+              <input id="nama_cp" name="nama_cp" type="text" value="<?php echo $loker_data['nama_cp'] ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
               <label for="email_cp">Kontak Email</label>
-              <input id="email_cp" name="email_cp" type="email">
+              <input id="email_cp" name="email_cp" type="email" value="<?php echo $loker_data['email_cp'] ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
             <div class="input-field col s6">
               <label for="no_telp_cp">Kontak Telepon</label>
-              <input id="no_telp_cp" name="no_telp_cp" type="text">
+              <input id="no_telp_cp" name="no_telp_cp" type="text" value="<?php echo $loker_data['no_telp_cp'] ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
-                <label for="tgl_expired">Tanggal Kadaluarsa</label>
-                <input id="tgl_expired" name="tgl_expired" type="text" class="datepicker">
-                <span class="helper-text main" data-error="" data-success=""></span>
+              <label for="tgl_expired">Tanggal Kadaluarsa</label>
+              <input id="tgl_expired" name="tgl_expired" type="text" class="datepicker" value="<?php echo $loker_data['tgl_expired'] ?>">
+              <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
-                <label for="deskripsi_loker">Deskripsi Lowongan</label>
-                <textarea id="deskripsi_loker" name="deskripsi_loker" class="materialize-textarea"></textarea>
-                <span class="helper-text main" data-error="" data-success=""></span>
+              <label for="deskripsi_loker">Deskripsi Lowongan</label>
+              <textarea id="deskripsi_loker" name="deskripsi_loker" class="materialize-textarea"><?php echo $loker_data['deskripsi_loker'] ?>
+              </textarea>
+              <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
 
           <hr>
           <div class="right-align">
-            <button type="submit" value="tambah_data_lowongan" name="tambah_data_lowongan" class="btn" > Tambah Lowongan Kerja
+            <button type="submit" value="edit_data_lowongan" name="edit_data_lowongan" class="btn" > Simpan
               <i class="material-icons right">send</i>
             </button>
           </div>
+
 
         </form>
       </div>

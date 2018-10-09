@@ -29,6 +29,13 @@ class Loker
     return $this->_db->get_info('loker','idloker', $id);
   }
 
+  public function update_loker($values = array(), $id)
+  {
+    if($this->_db->update('loker', 'idloker', $id, $values)) return true;
+    else return false;
+
+  }
+
 }
 
 
