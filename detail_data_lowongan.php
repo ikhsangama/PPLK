@@ -71,13 +71,13 @@ require_once "template/header.php"
               <?php } ?>
             </h4>
             <hr>
-                <!-- NOTIFIKASI -->
-                <?php if(Session::isOn('detail_data_lowongan'))
-                {
-                  echo Session::flash('detail_data_lowongan');
-                }
-                ?>
-                <!-- .NOTIFIKASI -->
+              <!-- NOTIFIKASI -->
+              <?php if(Session::isOn('sukses'))
+              {
+                echo Session::flash('sukses');
+              }
+              ?>
+              <!-- .NOTIFIKASI -->
             <hr><br>
 
             <table class="table-responsive">
@@ -171,7 +171,7 @@ require_once "template/header.php"
                 </p>
                 <!-- .badge -->
                 <p>Apply: <?php echo $row['tgl_apply'] ?></p>
-                <a href="detail_pencaker.php?idloker=<?php echo Input::get('idloker') ?>&idpencaker=<?php echo $row['idpencaker'] ?>">Detail Profil</a>
+                <a href="detail_apply_loker.php?idapply=<?php echo $row['idapply'] ?>">Detail Profil Lamaran</a>
                 <!-- badge -->
               </div>
               <div class="card-reveal">

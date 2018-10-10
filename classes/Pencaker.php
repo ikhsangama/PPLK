@@ -2,7 +2,7 @@
 /**
  *
  */
-class Loker
+class Pencaker
 {
 
   function __construct()
@@ -11,11 +11,16 @@ class Loker
   }
 
   // Hanya mendapatkan tabel pencaker yang sesuai dengan loker
-  public function get_table_cond($idperusahaan)
+  // public function get_table()
+  // {
+  //   $table = "pencaker";
+  //   // die($idperusahaan);
+  //   return $this->_db->get_table($table);
+  // }
+
+  public function get_data($id)
   {
-    $table = "loker";
-    // die($idperusahaan);
-    return $this->_db->get_table_cond($table, $idperusahaan);
+    return $this->_db->get_info('pencaker','idpencaker', $id);
   }
 
 }

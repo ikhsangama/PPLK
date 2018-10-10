@@ -18,6 +18,7 @@ require_once "template/header.php"
 <!--.HEADER  -->
 
 <!--KONTEN  -->
+<main>
 <div class="container">
   <div class="card-panel">
     <h3>Data Lowongan
@@ -75,9 +76,24 @@ require_once "template/header.php"
               <a class="btn-floating btn-small green tooltipped" data-tooltip="edit" href="edit_data_lowongan.php?idloker=<?php echo $row['idloker'] ?>">
                 <i class="material-icons left">edit</i>
               </a>
-              <a class="btn-floating btn-small red tooltipped" data-tooltip="hapus" href="hapus_data_lowongan.php?idloker=<?php echo $row['idloker'] ?>">
+              <!-- DELETE MODAL TRIGGER -->
+              <a class="btn-floating btn-small red tooltipped modal-trigger" data-tooltip="hapus" href="#modal<?php echo $row['idloker'] ?>">
                 <i class="material-icons left">delete</i>
               </a>
+              <!-- DELETE MODAL STRUCTURE -->
+              <div id="modal<?php echo $row['idloker'] ?>" class="modal red lighten-5">
+                <div class="modal-content">
+                  <h5>Hapus Data Lowongan Kerja?</h5>
+                  <hr>
+                  <p>Lowongan kerja <b><?php echo $row['nama'] ?></b> akan dihapus</p>
+                  <p>Tidak dapat mengembalikan lowongan kerja yang telah dihapus</p>
+                </div>
+                <div class="modal-footer">
+                  <a href="hapus_data_lowongan.php?idloker=<?php echo $row['idloker'] ?>" class="modal-close waves-effect waves-green btn-flat">Setuju</a>
+                  <a href="#!" class="modal-close waves-effect waves-red btn-flat">Batal</a>
+                </div>
+              </div>
+              <!-- .DELETE -->
             <?php }else { ?>
               <a class="btn-floating btn-small green tooltipped disabled">
                 <i class="material-icons left">edit</i>
@@ -94,7 +110,7 @@ require_once "template/header.php"
     </table>
   </div>
 </div>
-
+</main>
 <!--.KONTEN  -->
 
 <!--FOOTER  -->

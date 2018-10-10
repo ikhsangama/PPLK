@@ -25,7 +25,7 @@ if($loker_data['idperusahaan']==$perusahaan_data['idperusahaan'])
 {
   if($loker->hapus_loker($loker_data['idloker']))
   {
-    Session::flash('sukses', "Hapus data lowongan ". Input::get('nama'). " telah dihapus");
+    Session::flash('sukses', "Data lowongan <b>". $loker_data['nama']. " </b> telah dihapus");
 
     Redirect::to('data_lowongan');
   } else

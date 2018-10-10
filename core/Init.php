@@ -24,5 +24,7 @@ if(Session::isOn('perusahaan'))
  $tingkat_pendidikan_table = $tingkat_pendidikan->get_table();
 
  $apply_loker = new ApplyLoker();
+
+ $pencaker = new Pencaker();
 }
 ?>

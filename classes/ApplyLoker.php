@@ -21,6 +21,17 @@ class ApplyLoker
     return $this->_db->get_table_leftjoin($lefttable, $righttable, $leftid, $rightid, $condcolumn, $condvalue);
   }
 
+  public function get_data($id)
+  {
+    return $this->_db->get_info('apply_loker','idapply', $id);
+  }
+
+  public function update_apply_loker($values = array(), $id)
+  {
+    if($this->_db->update('apply_loker', 'idapply', $id, $values)) return true;
+    else return false;
+  }
+
 
 }
 
