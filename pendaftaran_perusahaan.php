@@ -15,6 +15,7 @@ if($perusahaan->isLogin()){
 // }
 $errors = array();
 
+
 if (Input::get('submit'))
 {
   // 1. Memanggil obj validasi
@@ -22,6 +23,11 @@ if (Input::get('submit'))
   // 2. Metode check
   $validation = $validation->check(array(
     'nama' => array(
+      'required' => true,
+      'min'=> 3,
+      'max'=>15,
+    ),
+    'email' => array(
       'required' => true,
       'min'=> 3,
       'max'=>15,
@@ -84,10 +90,22 @@ require_once "template/header.php";
       <div class="card-panel">
       <h3>Daftar Penyedia Lowongan Kerja disini</h3>
       <div class="divider"></div>
+      <!--MENAMPILKAN ERROR  -->
+      <?php if(!empty($errors)) { ?>
+        <div id="errors">
+          <?php foreach($errors as $error){ ?>
+            <li><?php echo $error ?></li>
+          <?php } ?>
+        </div>
+      <?php } ?>
+      <!--.MENAMPILKAN ERROR  -->
+      <div class="divider"></div>
+
+      <br>
       <form class="section" action="pendaftaran_perusahaan.php" method="post">
         <div class="input-field">
             <label for="nama">Nama</label>
-            <input id="nama" name="nama" type="text">
+            <input id="nama" name="nama" type="text" value="<?php echo Input::get('nama') ?>">
             <span class="helper-text main" data-error="" data-success=""></span>
         </div>
         <div class="input-field">
@@ -102,42 +120,34 @@ require_once "template/header.php";
         </div>
         <div class="input-field">
             <label for="nama_pemilik">Nama Pemilik</label>
-            <input id="nama_pemilik" name="nama_pemilik" type="text">
+            <input id="nama_pemilik" name="nama_pemilik" type="text" value="<?php echo Input::get('nama_pemilik') ?>">
             <span class="helper-text main" data-error="" data-success=""></span>
         </div>
         <div class="input-field">
             <label for="alamat">Alamat</label>
-            <input id="alamat" name="alamat" type="text">
+            <input id="alamat" name="alamat" type="text" value="<?php echo Input::get('alamat') ?>">
             <span class="helper-text main" data-error="" data-success=""></span>
         </div>
         <div class="input-field">
             <label for="kota">Kota</label>
-            <input id="kota" name="kota" type="text">
+            <input id="kota" name="kota" type="text" value="<?php echo Input::get('kota') ?>">
             <span class="helper-text main" data-error="" data-success=""></span>
         </div>
         <div class="input-field">
             <label for="email">Email</label>
-            <input id="email" name="email" type="email">
+            <input id="email" name="email" type="email" value="<?php echo Input::get('email') ?>">
             <span class="helper-text main" data-error="" data-success=""></span>
         </div>
         <div class="input-field">
             <label for="no_telp">Nomor Telepom</label>
-            <input id="no_telp" name="no_telp" type="text">
+            <input id="no_telp" name="no_telp" type="text" value="<?php echo Input::get('no_telp') ?>">
             <span class="helper-text main" data-error="" data-success=""></span>
         </div>
         <button class="btn waves-effect waves-light" type="submit" >Daftar Sekarang
             <i class="material-icons right">send</i>
         </button>
         <input type="hidden" name="submit" value="Daftar Sekarang">
-          <!--MENAMPILKAN ERROR  -->
-          <?php if(!empty($errors)) { ?>
-            <div id="errors">
-              <?php foreach($errors as $error){ ?>
-                <li><?php echo $error ?></li>
-              <?php } ?>
-            </div>
-          <?php } ?>
-          <!--.MENAMPILKAN ERROR  -->
+
       </form>
       </div>
     </div>
