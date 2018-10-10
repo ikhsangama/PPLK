@@ -60,5 +60,10 @@ $(document).ready(function(){
     constrainWidth: false,
     coverTrigger: false,
   });
+
+});
+$(document).on('click','#alert_close',function(){
+  $( "#alert_panel" ).fadeOut( "slow", function() {
+  });
 });
 </script>
