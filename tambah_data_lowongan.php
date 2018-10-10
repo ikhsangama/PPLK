@@ -124,7 +124,7 @@ require_once "template/header.php"
           <div class="row">
             <div class="input-field col s12">
               <label for="nama">Nama Lowongan</label>
-              <input id="nama" name="nama" type="text" autofocus>
+              <input id="nama" name="nama" type="text" value="<?php echo Input::get('nama') ?>" autofocus>
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
@@ -153,64 +153,64 @@ require_once "template/header.php"
           <div class="row">
             <div class="input-field col s6">
               <label for="tipe">Tipe</label>
-              <input id="tipe" name="tipe" type="text">
+              <input id="tipe" name="tipe" type="text" value="<?php echo Input::get('tipe') ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
               <label for="usia_min">Usia Min</label>
-              <input id="usia_min" name="usia_min" type="number" class="validate" type="number"  min="0" max="80">
+              <input id="usia_min" name="usia_min" type="number" class="validate" type="number"  min="0" max="80" value="<?php echo Input::get('usia_min') ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
             <div class="input-field col s6">
               <label for="usia_max">Usia Maximum</label>
-              <input id="usia_max" name="usia_max" type="number" class="validate" type="number"  min="0" max="80">
+              <input id="usia_max" name="usia_max" type="number" class="validate" type="number"  min="0" max="80" value="<?php echo Input::get('usia_max') ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col l6">
               <label for="gaji_min">Gaji Minimum</label>
-              <input id="gaji_min" name="gaji_min" type="number" class="validate" type="number"  min="0" max="100000000" step="100000">
+              <input id="gaji_min" name="gaji_min" type="number" class="validate" type="number"  min="0" max="100000000" step="100000" value="<?php echo Input::get('gaji_min') ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
             <div class="input-field col l6">
               <label for="gaji_max">Gaji Maksimum</label>
-              <input id="gaji_max" name="gaji_max" type="number" class="validate" type="number"  min="0" max="100000000" step="100000">
+              <input id="gaji_max" name="gaji_max" type="number" class="validate" type="number"  min="0" max="100000000" step="100000" value="<?php echo Input::get('gaji_max') ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
               <label for="nama_cp">Kontak Nama</label>
-              <input id="nama_cp" name="nama_cp" type="text">
+              <input id="nama_cp" name="nama_cp" type="text" value="<?php echo Input::get('nama_cp') ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
               <label for="email_cp">Kontak Email</label>
-              <input id="email_cp" name="email_cp" type="email">
+              <input id="email_cp" name="email_cp" type="email" value="<?php echo Input::get('email_cp') ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
             <div class="input-field col s6">
               <label for="no_telp_cp">Kontak Telepon</label>
-              <input id="no_telp_cp" name="no_telp_cp" type="text">
+              <input id="no_telp_cp" name="no_telp_cp" type="text"  value="<?php echo Input::get('no_telp_cp') ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s6">
                 <label for="tgl_expired">Tanggal Kadaluarsa</label>
-                <input id="tgl_expired" name="tgl_expired" type="text" class="datepicker">
+                <input id="tgl_expired" name="tgl_expired" type="text" class="datepicker"  value="<?php echo Input::get('tgl_expired') ?>">
                 <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
           <div class="row">
             <div class="input-field col s12">
                 <label for="deskripsi_loker">Deskripsi Lowongan</label>
-                <textarea id="deskripsi_loker" name="deskripsi_loker" class="materialize-textarea"></textarea>
+                <textarea id="deskripsi_loker" name="deskripsi_loker" class="materialize-textarea"> <?php echo Input::get('email_cp') ?>"</textarea>
                 <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
