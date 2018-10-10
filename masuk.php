@@ -71,7 +71,7 @@ require_once "template/header.php";
 
 <div class="container">
   <div class="row">
-    <div class="col l12 m12 s12">
+    <div class="col l10 m12 s12 offset-l1">
       <div class="card-panel">
         <h3>Masuk Penyedia Lowongan Kerja</h3>
         <div class="divider"></div>

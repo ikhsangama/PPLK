@@ -151,7 +151,7 @@ require_once "template/header.php"
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
               <label for="tipe">Tipe</label>
               <input id="tipe" name="tipe" type="text" value="<?php echo Input::get('tipe') ?>">
               <span class="helper-text main" data-error="" data-success=""></span>
@@ -201,7 +201,7 @@ require_once "template/header.php"
             </div>
           </div>
           <div class="row">
-            <div class="input-field col s6">
+            <div class="input-field col s12">
                 <label for="tgl_expired">Tanggal Kadaluarsa</label>
                 <input id="tgl_expired" name="tgl_expired" type="text" class="datepicker"  value="<?php echo Input::get('tgl_expired') ?>">
                 <span class="helper-text main" data-error="" data-success=""></span>
@@ -210,12 +210,10 @@ require_once "template/header.php"
           <div class="row">
             <div class="input-field col s12">
                 <label for="deskripsi_loker">Deskripsi Lowongan</label>
-                <textarea id="deskripsi_loker" name="deskripsi_loker" class="materialize-textarea"> <?php echo Input::get('email_cp') ?>"</textarea>
+                <textarea id="deskripsi_loker" name="deskripsi_loker" class="materialize-textarea"> <?php echo Input::get('email_cp') ?></textarea>
                 <span class="helper-text main" data-error="" data-success=""></span>
             </div>
           </div>
-
-          <hr>
           <div class="right-align">
             <button type="submit" value="tambah_data_lowongan" name="tambah_data_lowongan" class="btn" > Tambah Lowongan Kerja
               <i class="material-icons right">send</i>
@@ -229,7 +227,17 @@ require_once "template/header.php"
 </div>
 </main>
 <!--.KONTEN  -->
+<script>
+  M.AutoInit();
+  $(document).ready(function(){
 
+    $('.datepicker').datepicker({
+      format: 'yyyy-mm-dd'
+    });
+    $('select').material_select();
+
+  });
+</script>
 <!--FOOTER  -->
 <?php require_once "template/footer.php"; ?>
 <!--.FOOTER  -->

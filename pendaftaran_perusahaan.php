@@ -30,7 +30,7 @@ if (Input::get('submit'))
     'email' => array(
       'required' => true,
       'min'=> 3,
-      'max'=>15,
+
     ),
     'password' => array(
       'required' => true,
@@ -59,6 +59,7 @@ if (Input::get('submit'))
         'kota' => Input::get('kota'),
         'email' => Input::get('email'),
         'no_telp' => Input::get('no_telp'),
+        'tgl_daftar'=> date("Y-m-d")
       ));
 
       // MENYIMPAN SESSION
