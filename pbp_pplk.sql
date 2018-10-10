@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Oct 09, 2018 at 08:37 PM
+-- Generation Time: Oct 10, 2018 at 04:08 PM
 -- Server version: 10.1.28-MariaDB
 -- PHP Version: 7.1.10
 
@@ -33,7 +33,7 @@ CREATE TABLE `apply_loker` (
   `idloker` int(11) NOT NULL,
   `idpencaker` int(11) NOT NULL,
   `tgl_apply` date DEFAULT NULL,
-  `status` set('Proses Seleksi','Diterima','Ditolak') NOT NULL
+  `status` set('Proses Seleksi','Panggilan Tes','Diterima','Ditolak') NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
 --
@@ -41,7 +41,7 @@ CREATE TABLE `apply_loker` (
 --
 
 INSERT INTO `apply_loker` (`idapply`, `idloker`, `idpencaker`, `tgl_apply`, `status`) VALUES
-(1, 15, 1, '2018-10-09', 'Ditolak'),
+(1, 15, 1, '2018-10-09', 'Diterima'),
 (2, 15, 2, '2018-10-09', 'Proses Seleksi'),
 (3, 16, 3, '2018-10-09', 'Diterima'),
 (4, 16, 1, '2018-10-10', 'Ditolak'),
@@ -300,7 +300,7 @@ ALTER TABLE `bidang_pekerjaan`
 -- AUTO_INCREMENT for table `loker`
 --
 ALTER TABLE `loker`
-  MODIFY `idloker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=17;
+  MODIFY `idloker` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=21;
 
 --
 -- AUTO_INCREMENT for table `pencaker`
