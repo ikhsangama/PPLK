@@ -1,3 +1,8 @@
+$.validator.addMethod('moreThan', function(value, element, param) {
+    var i = parseInt(value);
+    var j = parseInt($(param).val());
+    return i <= j;
+}, "More than");
 $.validator.setDefaults({
   errorClass: 'invalid',
   validClass: "valid",
@@ -18,6 +23,29 @@ $.validator.setDefaults({
       password_verify:{
         required:true,
         equalTo:'#password'
+      },
+      gaji_min:{
+        number:true
+      },
+      gaji_max:{
+        number:true,
+        moreThan:'#gaji_min'
+      },
+      usia_min:{
+        number:true,
+      },
+      usia_max{
+        number:true,
+        moreThan:'#usia_min'
+      },
+      idtingkat_pendidikan:{
+        required:true
+      },
+      idbidang:{
+        required:true
+      },
+      tgl_expired:{
+        required:true
       }
   },
   errorPlacement: function (error, element) {
