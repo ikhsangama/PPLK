@@ -88,22 +88,24 @@ require_once "template/header.php";
 <div class="container">
   <div class="row">
     <div class="col l12 m12 s12">
+      <?php if (!empty($errors)) {?>
+        <div class="card-panel red lighten-4" id="alert_panel">
+          <i class="material-icons right" id="alert_close" style="cursor:pointer">close</i>
+          <b>PERINGATAN : </b> Cek Kembali Form Yang Di Masukan
+        </div>
+      <?php }?>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col l12 m12 s12">
       <div class="card-panel">
       <h3>Daftar Penyedia Lowongan Kerja disini</h3>
       <div class="divider"></div>
-      <!--MENAMPILKAN ERROR  -->
-      <?php if(!empty($errors)) { ?>
-        <div id="errors">
-          <?php foreach($errors as $error){ ?>
-            <li><?php echo $error ?></li>
-          <?php } ?>
-        </div>
-      <?php } ?>
-      <!--.MENAMPILKAN ERROR  -->
-      <div class="divider"></div>
+      <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+      <script src="assets/js/validation.js"></script>
+      <script src="assets/js/formhelper.js"></script>
 
-      <br>
-      <form class="section" action="pendaftaran_perusahaan.php" method="post">
+      <form class="section" id="formdaftar" action="pendaftaran_perusahaan.php" method="post">
         <div class="input-field">
             <label for="nama">Nama</label>
             <input id="nama" name="nama" type="text" value="<?php echo Input::get('nama') ?>">
@@ -155,6 +157,17 @@ require_once "template/header.php";
   </div>
 </div>
 </main>
+<script type="text/javascript">
+//MENGEMBALIKAN ERROR DARI SERVER
+ //Mengambil error report dari class validation
+ //Lalu meletakan error report pada tiap input yang salah
+ var error=<?php echo json_encode($errors); ?>;
+ console.log(error);
+$(document).ready(function(){
+    setHelper(error);//fungsi menaruh error dari server pada helper form input yg bersangkutan
+    $('#formdaftar').validate();//fungsi menaruh validasi inputan user pada form input
+});
+</script>
 <?php
   require_once"template/footer.php";
  ?>
