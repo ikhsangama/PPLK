@@ -3,7 +3,7 @@
 
   <div class="footer-copyright">
     <div class="container">
-    © 2018 Demi Portofolio
+    © 2018 PBP
     </div>
   </div>
 </footer>

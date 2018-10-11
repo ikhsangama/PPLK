@@ -116,7 +116,7 @@ require_once "template/header.php"
                     </tr>
                     <tr>
                       <td>Tanggal Bergabung : </td>
-                      <td><?php echo $perusahaan_data['tgl_daftar']?></td>
+                      <td><?php echo $perusahaan_data['tgl_daftar']?>?variable?</td>
                     </tr>
                   </table>
                 </div>
