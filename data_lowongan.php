@@ -21,25 +21,35 @@ require_once "template/header.php"
 <main>
 <div class="container">
   <div class="card-panel">
-
-    <h3>Data Lowongan</h3>
-    <div class=" right-align" style="padding-bottom:15px">
-      <a class="waves-effect waves-light btn-small blue" href="tambah_data_lowongan.php">
-        <i class="material-icons left">
-          add
-        </i>
-        Tambah
-      </a>
-    </h3>
+    <div class="row">
+      <div class="col l7">
+        <h3>Data Lowongan</h3>
+      </div>
+      <div class="col l5">
+        <div class=" right-align" style="padding-bottom:15px">
+          <a class="waves-effect waves-light btn-small blue" href="tambah_data_lowongan.php">
+            <i class="material-icons left">
+              add
+            </i>
+            Tambah
+          </a>
+        </div>
+        <div class="right-align">
+          <div class="switch rigth-align">
+            <label>
+              Off
+              <input id="filter" type="checkbox">
+              <span class="lever"></span>
+              On
+            </label>
+            <div class="">
+              <label>Tampilkan Seluruh Lowongan</label>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
     <!-- Switch -->
-  <div class="switch">
-    <label>
-      Off
-      <input type="checkbox">
-      <span class="lever"></span>
-      On
-    </label>
-  </div>
 
     <!-- NOTIFIKASI -->
 
@@ -67,7 +77,7 @@ require_once "template/header.php"
 
       <tbody>
         <?php while($row = mysqli_fetch_array($loker_table)){ ?>
-        <tr>
+        <tr class="<?php echo ($row['idperusahaan'] == $perusahaan_data['idperusahaan'] ? 'mine' : 'not');?>">
           <td>
             <?php echo $row['nama'] ?>
           </td>
@@ -121,6 +131,15 @@ require_once "template/header.php"
     </table>
   </div>
 </div>
+<script type="text/javascript">
+$(document).ready(function(){
+  $('tr.not').hide();
+  $('#filter').click(function() {
+    $("tr.not").toggle(this.checked);
+  });
+});
+
+</script>
 </main>
 <!--.KONTEN  -->
 
