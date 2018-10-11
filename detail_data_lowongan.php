@@ -61,7 +61,7 @@ require_once "template/header.php"
         <!-- .Operasi Owner-->
         <div class="center-align">
           <h2><?php echo $loker_data['nama']; ?></h2>
-          <h5><?php echo $perusahaan_data['nama']; ?></h5>
+          <h5><?php echo $perusahaan_data['nama']; ?>?variable?</h5>
         </div>
         <ul class="tabs tabs-fixed-width">
           <li class="tab"><a class="active" href="#lowo">Detail Lowongan Kerja</a></li>
@@ -93,7 +93,7 @@ require_once "template/header.php"
                   <table>
                     <tr>
                       <td>Nama Perusahaan : </td>
-                      <td><?php echo $perusahaan_data['nama'];?></td>
+                      <td><?php echo $perusahaan_data['nama'];?>?variable?</td>
                     </tr>
                     <tr>
                       <td>Kontak Nama : </td>
@@ -109,8 +109,8 @@ require_once "template/header.php"
                     </tr>
                     <tr>
                       <td>Alamat : </td>
-                      <td><?php echo $perusahaan_data['alamat'];?><br>
-                          <?php echo $perusahaan_data['kota'];?><br>
+                      <td><?php echo $perusahaan_data['alamat'];?>?variable?<br>
+                          <?php echo $perusahaan_data['kota'];?>?variable?<br>
                           <a href="https://www.google.com/maps/search/<?php echo $perusahaan_data['alamat'].'+'.$perusahaan_data['kota'];?>" target="_blank">lihat lokasi</a>
                       </td>
                     </tr>
