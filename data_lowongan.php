@@ -29,6 +29,15 @@ require_once "template/header.php"
         Tambah
       </a>
     </h3>
+    <!-- Switch -->
+  <div class="switch">
+    <label>
+      Off
+      <input type="checkbox">
+      <span class="lever"></span>
+      On
+    </label>
+  </div>
 
     <!-- NOTIFIKASI -->
     <hr>

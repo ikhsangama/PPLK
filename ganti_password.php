@@ -60,8 +60,23 @@ require_once "template/header.php"
         <div class="card-panel">
           <h3>Ganti Password</h3>
           <div class="divider"></div>
+            <!--MENAMPILKAN ERROR  -->
+            <?php if(!empty($errors)) { ?>
+              <div id="errors">
+                <?php foreach($errors as $error){ ?>
+                  <li><?php echo $error ?></li>
+                <?php } ?>
+              </div>
+            <?php } ?>
+            <!--.MENAMPILKAN ERROR  -->
+          <div class="divider"></div>
           <div class="section">
-            <form class="" action="ganti_password.php" method="post">
+            <!-- javascript validator-->
+            <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+            <script src="assets/js/validation.js"></script>
+            <script src="assets/js/formhelper.js"></script>
+            <!-- .javascript validator-->
+            <form class="" id="formGantiPassword" action="ganti_password.php" method="post">
               <div class="input-field">
                   <label for="password">Password Lama</label>
                   <input id="password" name="password" type="password">
@@ -88,4 +103,15 @@ require_once "template/header.php"
       </div>
     </div>
   </div>
+  <script type="text/javascript">
+  //MENGEMBALIKAN ERROR DARI SERVER
+   //Mengambil error report dari class validation
+   //Lalu meletakan error report pada tiap input yang salah
+   var error=<?php echo json_encode($errors); ?>;
+   console.log(error);
+  $(document).ready(function(){
+      setHelper(error);//fungsi menaruh error dari server pada helper form input yg bersangkutan
+      $('#formGantiPassword').validate();//fungsi menaruh validasi inputan user pada form input
+  });
+  </script>
 </main>

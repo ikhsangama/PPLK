@@ -88,22 +88,24 @@ require_once "template/header.php";
 <div class="container">
   <div class="row">
     <div class="col l12 m12 s12">
-      <?phpif (!empty($errors)) {?>
-      <div class="card-panel red lighten-4" id="alert_panel">
-        <i class="material-icons right" id="alert_close" style="cursor:pointer">close</i>
-        <b>PERINGATAN : </b> Cek Kembali Form Yang Di Masukan
-      </div>
-      <?php}?>
-    </div>
-  </div>
-  <div class="row">
-    <div class="col l12 m12 s12">
       <div class="card-panel">
       <h3>Daftar Penyedia Lowongan Kerja disini</h3>
       <div class="divider"></div>
+        <!--MENAMPILKAN ERROR  -->
+        <?php if(!empty($errors)) { ?>
+          <div id="errors">
+            <?php foreach($errors as $error){ ?>
+              <li><?php echo $error ?></li>
+            <?php } ?>
+          </div>
+        <?php } ?>
+        <!--.MENAMPILKAN ERROR  -->
+      <div class="divider"></div>
+      <!-- javascript validator-->
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
       <script src="assets/js/validation.js"></script>
       <script src="assets/js/formhelper.js"></script>
+      <!-- .javascript validator-->
 
       <form class="section" id="formdaftar" action="pendaftaran_perusahaan.php" method="post">
         <div class="input-field">

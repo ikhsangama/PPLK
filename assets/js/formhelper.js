@@ -12,6 +12,7 @@ function setHelper(err) {
        console.log('kosong');
      }
     $element.addClass('invalid');
+
     // $('input[name="'+index+'"]').addClass('invalid');
     // console.log(index);
     // $('<span class="helper-text sec" data-error="'+value+'" data-success=""></span>').insertAfter('input[name="'+index+'"]');

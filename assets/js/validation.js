@@ -1,8 +1,8 @@
 $.validator.addMethod('moreThan', function(value, element, param) {
     var i = parseInt(value);
     var j = parseInt($(param).val());
-    return i <= j;
-}, "More than");
+    return i >= j;
+}, "Harus Lebih Dari {0}");
 $.validator.setDefaults({
   errorClass: 'invalid',
   validClass: "valid",
@@ -34,7 +34,7 @@ $.validator.setDefaults({
       usia_min:{
         number:true,
       },
-      usia_max{
+      usia_max:{
         number:true,
         moreThan:'#usia_min'
       },
@@ -46,6 +46,13 @@ $.validator.setDefaults({
       },
       tgl_expired:{
         required:true
+      },
+      password_new:{
+        required:true
+      },
+      password_new_verify:{
+        required:true,
+        equalTo:'#password_new'
       }
   },
   errorPlacement: function (error, element) {

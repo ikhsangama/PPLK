@@ -75,6 +75,16 @@ require_once "template/header.php";
       <div class="card-panel">
         <h3>Masuk Penyedia Lowongan Kerja</h3>
         <div class="divider"></div>
+          <!--MENAMPILKAN ERROR  -->
+          <?php if(!empty($errors)) { ?>
+            <div id="errors">
+              <?php foreach($errors as $error){ ?>
+                <li><?php echo $error ?></li>
+              <?php } ?>
+            </div>
+          <?php } ?>
+          <!--.MENAMPILKAN ERROR  -->
+        <div class="divider"></div>
 
         <form class="section" action="masuk.php" method="post">
           <div class="input-field">
