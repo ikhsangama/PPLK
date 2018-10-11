@@ -47,7 +47,9 @@ require_once "template/header.php"
                 </tr>
                 <tr>
                   <td>Kota :</td>
-                  <td><?php echo $perusahaan_data['kota'] ?></td>
+                  <td><?php echo $perusahaan_data['kota'] ?><br>
+                    <a href="https://www.google.com/maps/search/<?php echo $perusahaan_data['alamat'].'+'.$perusahaan_data['kota'];?>" target="_blank">lihat lokasi</a>
+                  </td>
                 </tr>
                 <tr>
                   <td>Email :</td>

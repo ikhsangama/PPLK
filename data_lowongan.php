@@ -21,7 +21,9 @@ require_once "template/header.php"
 <main>
 <div class="container">
   <div class="card-panel">
-    <h3>Data Lowongan
+
+    <h3>Data Lowongan</h3>
+    <div class=" right-align" style="padding-bottom:15px">
       <a class="waves-effect waves-light btn-small blue" href="tambah_data_lowongan.php">
         <i class="material-icons left">
           add
@@ -40,7 +42,7 @@ require_once "template/header.php"
   </div>
 
     <!-- NOTIFIKASI -->
-    <hr>
+
     <?php if(Session::isOn('sukses'))
     {
       echo Session::flash('sukses');
@@ -49,7 +51,7 @@ require_once "template/header.php"
       echo Session::flash('peringatan');
     }
     ?>
-    <hr><br>
+    <div class="divider"></div>
   <!-- .NOTIFIKASI -->
 
     <table class="responsive-table striped">

@@ -67,6 +67,16 @@ require_once "template/header.php"
 <div class="container">
   <div class="row">
     <div class="col l12 m12 s12">
+      <?php if (!empty($errors)) {?>
+        <div class="card-panel red lighten-4" id="alert_panel">
+          <i class="material-icons right" id="alert_close" style="cursor:pointer">close</i>
+          <b>PERINGATAN : </b> Cek Kembali Form Yang Di Masukan
+        </div>
+      <?php }?>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col l12 m12 s12">
       <div class="card-panel">
         <h3>Edit Profil <?php echo $perusahaan_data['nama'] ?> </h3>
         <div class="divider"></div>
