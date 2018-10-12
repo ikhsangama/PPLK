@@ -188,9 +188,9 @@ require_once "template/header.php"
             <div class="collapsible-header"><i class="material-icons">whatshot</i>Riwayat Pekerjaan</div>
             <div class="collapsible-body">
               <?php while($row = mysqli_fetch_array($riwayatpekerjaan_table)){ ?>
-                <h5><?php echo $bidang_pekerjaan->get_data($row['idbidang'])['nama'] ?>
+                <h5><?php echo $bidang_pekerjaan->get_data($row['idbidang'])['nama'] ?> -
                   <?php echo $row['perusahaan'] ?></h5>
-                <h6><?php echo $row['bln_masuk'] ?> <?php echo $row['thn_masuk'] ?> -
+                <h6><?php echo $row['kota'] ?>, <?php echo $row['bln_masuk'] ?> <?php echo $row['thn_masuk'] ?> -
                   <?php echo $row['bln_lulus'] ?> <?php echo $row['thn_lulus'] ?></h6>
                 <blockquote> <?php echo $row['deskripsi_pekerjaan'] ?></blockquote>
               <div class="divider"></div>
