@@ -91,9 +91,9 @@ require_once "template/header.php"
             <?php echo $row['tgl_expired'] ?>
           </td>
           <td>
-            <a class="btn-floating btn-small tooltipped" data-tooltip="detail" href="detail_data_lowongan.php?idloker=<?php echo $row['idloker'] ?>"><i class="material-icons left">visibility</i>
-            </a>
             <?php if($row['idperusahaan'] == $perusahaan_data['idperusahaan']){?>
+              <a class="btn-floating btn-small tooltipped" data-tooltip="detail" href="detail_data_lowongan.php?idloker=<?php echo $row['idloker'] ?>"><i class="material-icons left">visibility</i>
+              </a>
               <a class="btn-floating btn-small green tooltipped" data-tooltip="edit" href="edit_data_lowongan.php?idloker=<?php echo $row['idloker'] ?>">
                 <i class="material-icons left">edit</i>
               </a>
@@ -116,11 +116,8 @@ require_once "template/header.php"
               </div>
               <!-- .DELETE -->
             <?php }else { ?>
-              <a class="btn-floating btn-small green tooltipped disabled">
-                <i class="material-icons left">edit</i>
-              </a>
-              <a class="btn-floating btn-small red tooltipped disabled">
-                <i class="material-icons left">delete</i>
+              <a class="btn btn-small green tooltipped disabled">
+                <i class="material-icons left">lock</i> Terkunci
               </a>
             <?php } ?>
           </td>

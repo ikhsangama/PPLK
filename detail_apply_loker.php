@@ -23,15 +23,17 @@ if(!$apply_loker_data)
 $pencaker_data = $pencaker->get_data($apply_loker_data['idpencaker']);
 $loker_data = $loker->get_data($apply_loker_data['idloker']);
 
+// Tidak dapat melihat detail profil lamaran loker perusahaan lain
 // Hanya perusahaan yang membuat loker yang dapat mengubah status apply_loker pencaker
+if($loker_data['idperusahaan']!=$perusahaan_data['idperusahaan'])
+{
+  Session::flash('peringatan', 'Otentifikasi perusahaan berbeda');
+
+  Redirect::to('data_lowongan');
+}
+
 if(Input::get('status'))
 {
-  if(!($loker_data['idperusahaan']==$perusahaan_data['idperusahaan']))
-  {
-    Session::flash('peringatan', 'Tidak dapat mengubah status aplikasi, otentifikasi perusahaan berbeda');
-
-    Redirect::to('data_lowongan');
-  }
   // die(Input::get('status'));
   if(Input::get('status')=="panggilan")
   {
@@ -50,6 +52,11 @@ if(Input::get('status'))
   Session::flash('sukses', 'Status pencari kerja telah diperbarui');
   header('Location: detail_apply_loker.php?idapply='.$apply_loker_data['idapply']);
 }
+
+//Riwayat Pendidikan
+$riwayatpendidikan = new RiwayatPendidikan();
+$riwayatpendidikan_table = $riwayatpendidikan->get_table('idpencaker', $apply_loker_data['idpencaker']);
+
 
 // $perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan')); dipindah ke init
 require_once "template/header.php"
@@ -113,49 +120,72 @@ require_once "template/header.php"
       <!-- .Status Loker -->
       <!-- Detail Profil -->
       <div class="col s8">
-        <img class="materialboxed" width="200" src="<?php echo $pencaker_data['foto'] ?>">
-        <table>
-          <tr>
-            <td>Nama</td>
-            <td>:</td>
-            <td><?php echo $pencaker_data['nama'] ?></td>
-          </tr>
-          <tr>
-            <td>Jenis Kelamin</td>
-            <td>:</td>
-            <td><?php echo $pencaker_data['jenis_kelamin'] ?></td>
-          </tr>
-          <tr>
-            <td>Tempat, Tanggal Lahir</td>
-            <td>:</td>
-            <td><?php echo $pencaker_data['tempat_lahir'] ?>, <?php echo $pencaker_data['tanggal_lahir'] ?></td>
-          </tr>
-          <tr>
-            <td>Alamat</td>
-            <td>:</td>
-            <td><?php echo $pencaker_data['alamat'] ?></td>
-          </tr>
-          <tr>
-            <td>Kota</td>
-            <td>:</td>
-            <td><?php echo $pencaker_data['kota'] ?></td>
-          </tr>
-          <tr>
-            <td>Email</td>
-            <td>:</td>
-            <td><?php echo $pencaker_data['email'] ?></td>
-          </tr>
-          <tr>
-            <td>No Telp</td>
-            <td>:</td>
-            <td><?php echo $pencaker_data['no_telp'] ?></td>
-          </tr>
-          <tr>
-            <td>Tanggal Daftar</td>
-            <td>:</td>
-            <td><?php echo $pencaker_data['tgl_daftar'] ?></td>
-          </tr>
-        </table>
+        <ul class="collapsible popout">
+          <li class="active">
+            <div class="collapsible-header"><i class="material-icons">filter_drama</i>Biodata</div>
+            <div class="collapsible-body">
+              <img class="materialboxed" width="200" src="<?php echo $pencaker_data['foto'] ?>">
+              <table>
+                <tr>
+                  <td>Nama</td>
+                  <td>:</td>
+                  <td><?php echo $pencaker_data['nama'] ?></td>
+                </tr>
+                <tr>
+                  <td>Jenis Kelamin</td>
+                  <td>:</td>
+                  <td><?php echo $pencaker_data['jenis_kelamin'] ?></td>
+                </tr>
+                <tr>
+                  <td>Tempat, Tanggal Lahir</td>
+                  <td>:</td>
+                  <td><?php echo $pencaker_data['tempat_lahir'] ?>, <?php echo $pencaker_data['tanggal_lahir'] ?></td>
+                </tr>
+                <tr>
+                  <td>Alamat</td>
+                  <td>:</td>
+                  <td><?php echo $pencaker_data['alamat'] ?></td>
+                </tr>
+                <tr>
+                  <td>Kota</td>
+                  <td>:</td>
+                  <td><?php echo $pencaker_data['kota'] ?></td>
+                </tr>
+                <tr>
+                  <td>Email</td>
+                  <td>:</td>
+                  <td><?php echo $pencaker_data['email'] ?></td>
+                </tr>
+                <tr>
+                  <td>No Telp</td>
+                  <td>:</td>
+                  <td><?php echo $pencaker_data['no_telp'] ?></td>
+                </tr>
+                <tr>
+                  <td>Tanggal Daftar</td>
+                  <td>:</td>
+                  <td><?php echo $pencaker_data['tgl_daftar'] ?></td>
+                </tr>
+              </table>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">place</i>Riwayat Pendidikan</div>
+            <div class="collapsible-body">
+              <?php while($row = mysqli_fetch_array($riwayatpendidikan_table)){ ?>
+                <h5><?php echo $tingkat_pendidikan->get_data($row['idtingkat_pendidikan'])['keterangan'] ?>
+                  <?php echo $row['jurusan'] ?></h5>
+                <h6><?php echo $row['bln_masuk'] ?> <?php echo $row['thn_masuk'] ?> -
+                  <?php echo $row['bln_lulus'] ?> <?php echo $row['thn_lulus'] ?></h6>
+              <div class="divider"></div>
+            <?php } ?>
+            </div>
+          </li>
+          <li>
+            <div class="collapsible-header"><i class="material-icons">whatshot</i>Riwayat Pekerjaan</div>
+            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+          </li>
+        </ul>
       </div>
       <!-- .Detail Profil -->
     </div>

@@ -22,7 +22,7 @@
               <?php if(Session::isOn('perusahaan')){?>
               <li><a href="data_lowongan.php">Data Lowongan</a></li>
               <!-- Dropdown Trigger -->
-              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><?php echo $perusahaan_data['nama'] ?><i class="material-icons right">arrow_drop_down</i></a></li>
+              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><?php echo $perusahaan->get_data_email(Session::getSession('perusahaan'))['nama'] ?><i class="material-icons right">arrow_drop_down</i></a></li>
               <!-- .Dropdown Trigger-->
               <!-- Dropdown Structure -->
               <ul id='dropdown1' class='dropdown-content'>

@@ -11,7 +11,7 @@ $perusahaan = new Perusahaan();
 // Jika session perusahaan aktif
 if(Session::isOn('perusahaan'))
 {
- $perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan'));
+ $perusahaan_data = $perusahaan->get_data_email(Session::getSession('perusahaan'));
  // die($perusahaan_data['idperusahaan']);
  // akses kelas lain setelah session aktif
  $loker = new Loker();

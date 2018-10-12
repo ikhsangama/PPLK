@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.0.0-dev
+-- version 4.7.4
 -- https://www.phpmyadmin.net/
 --
--- Host: 192.168.30.23
--- Generation Time: Oct 11, 2018 at 03:36 AM
--- Server version: 8.0.3-rc-log
--- PHP Version: 7.2.9-1+0~20180910100512.5+stretch~1.gbpdaac35
+-- Host: 127.0.0.1
+-- Generation Time: Oct 10, 2018 at 04:08 PM
+-- Server version: 10.1.28-MariaDB
+-- PHP Version: 7.1.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -45,7 +45,8 @@ INSERT INTO `apply_loker` (`idapply`, `idloker`, `idpencaker`, `tgl_apply`, `sta
 (2, 15, 2, '2018-10-09', 'Proses Seleksi'),
 (3, 16, 3, '2018-10-09', 'Diterima'),
 (4, 16, 1, '2018-10-10', 'Ditolak'),
-(5, 15, 3, '2018-10-09', 'Proses Seleksi');
+(5, 15, 3, '2018-10-09', 'Proses Seleksi'),
+(6, 15, 4, '2018-10-10', 'Diterima');
 
 -- --------------------------------------------------------
 
@@ -66,8 +67,7 @@ INSERT INTO `bidang_pekerjaan` (`idbidang`, `nama`) VALUES
 (1, 'Industri'),
 (2, 'Teknologi Informasi'),
 (3, 'Finansial'),
-(4, 'Marketing'),
-(5, 'Konstruksi');
+(4, 'Lainnya');
 
 -- --------------------------------------------------------
 
@@ -100,9 +100,9 @@ CREATE TABLE `loker` (
 --
 
 INSERT INTO `loker` (`idloker`, `idperusahaan`, `nama`, `idbidang`, `idtingkat_pendidikan`, `tipe`, `usia_min`, `usia_max`, `gaji_min`, `gaji_max`, `nama_cp`, `email_cp`, `no_telp_cp`, `tgl_insert`, `tgl_update`, `tgl_expired`, `deskripsi_loker`) VALUES
-(11, 2, 'jobsDB', 3, 3, '', 0, 0, 1000000, 70000000, 'jobseeker', ' CS@jobsDB.co.id', '+62 21 3002 8899 ', '2018-10-08', '2018-10-11', '2018-10-09', 'Di JobsDB, Anda akan melihat daftar pekerjaan berdasarkan fungsi, lokasi, dan industri. '),
-(12, 2, 'Jobstreet', 4, 4, '', 200, 800, 5000000, 70000000, 'marcom', ' ads-id@jobstreet.com', '62 24 76413622', '2018-10-08', NULL, '2018-10-13', 'Kami adalah salah satu perusahaan penyedia informasi lowongan pekerjaan terkemuka di Asia. Kami berperan sebagai fasilitator pencocokan dan komunikasi lapangan kerja antara pencari kerja dan perusahaan, di Malaysia, Filipina, Singapura, Indonesia dan Vietnam.'),
-(13, 2, 'CareerBuilder', 1, 4, '', 100, 157, 1000000, 70000000, '', '@hiredtoday.com', '', '2018-10-08', NULL, '2018-10-09', ' iklan rekrutmen online & SaaS di Indonesia dan seterusnya dengan menjadi organisasi yang berfokus pada karyawan dan berfokus pada pelanggan yang memberikan tingkat pengembalian terbaik kepada para pemangku kepentingan kami.'),
+(11, 2, 'nnn', 3, 3, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-09', ''),
+(12, 2, 'lolo', 4, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-13', ''),
+(13, 2, 'kkk', 1, 4, '', 0, 0, 0, 0, '', '', '', '2018-10-08', NULL, '2018-10-09', ''),
 (15, 1, 'Employee Relation', 1, 3, 'Full Time', 20, 30, 1000000, 6000000, 'Ikhsan', 'ikhsangama@gmail.com', '09090909', '2018-10-08', '2018-10-09', '2018-10-11', 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.              '),
 (16, 1, 'OA Staff', 2, 1, 'Full Time', 20, 25, 100000, 1000000, 'Ikhsan', 'ikhsangama@gmail.com', '0809090909', '2018-10-09', '2018-10-09', '2018-10-31', 'Lorem');
 
@@ -162,9 +162,7 @@ CREATE TABLE `perusahaan` (
 
 INSERT INTO `perusahaan` (`idperusahaan`, `nama`, `password`, `nama_pemilik`, `alamat`, `kota`, `email`, `no_telp`, `tgl_daftar`) VALUES
 (1, 'PT Transcosmos Indonesia', '$2y$10$5t1eT98DxqNZrbx9wZybnuDZ1VrUK7tBpVOw4wjXj3C68Wxmqfm/e', 'Ikhsan', 'RDTX Tower, Jl. Gd. RDTX Tower Lt.7 Jl. Prof. Dr. Satrio Kav E4, Mega Kuningan, Jakarta Selatan', 'Jakarta', 'lll@gmail.com', '080989999', '2018-10-07'),
-(2, 'Pt. Kayu Lapis', '$2y$10$7G1Ksn5M3.2OXeq59VVLaOa9dBfYyjGY8TpHx4l27aUDsHi9T0i8C', '', 'Jl. Sibayak No. 11-13, Karanganyar Gn., Candisari, Kota Semarang, Jawa Tengah 50255', 'Semarang', 'Kayulapis@gmail.com', '(024) 8662980.', '2018-10-08'),
-(35, 'PT Lippo General Insurance Tbk', '$2y$10$5t1eT98DxqNZrbx9wZybnuDZ1VrUK7tBpVOw4wjXj3C68Wxmqfm/e', '', 'jakarta barat', 'Jakarta Barat', 'lippo@gmail.com', '(024) 8662980.', NULL),
-(45, '', '$2y$10$5t1eT98DxqNZrbx9wZybnuDZ1VrUK7tBpVOw4wjXj3C68Wxmqfm/e', 'PT Rapi Trans Logistik Indonesia', 'Jakarta Raya', 'Jakarta Raya', 'trans@gmail.com', '08456783214', NULL);
+(2, 'ppp', '$2y$10$7G1Ksn5M3.2OXeq59VVLaOa9dBfYyjGY8TpHx4l27aUDsHi9T0i8C', '', '', '', 'ppp@gmail.com', '', '2018-10-08');
 
 -- --------------------------------------------------------
 
@@ -185,16 +183,6 @@ CREATE TABLE `riwayat_pekerjaan` (
   `deskripsi_pekerjaan` text NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
 
---
--- Dumping data for table `riwayat_pekerjaan`
---
-
-INSERT INTO `riwayat_pekerjaan` (`idriwayat_pekerjaan`, `idpencaker`, `idbidang`, `perusahaan`, `kota`, `bln_masuk`, `thn_masuk`, `bln_lulus`, `thn_lulus`, `deskripsi_pekerjaan`) VALUES
-(11, 3, 3, 'PT.Rapi Trans Logistik Indonesia', 'Jakarta Barat', 'Januari', 2003, 'Mei', 2015, 'Mampu bekerja cekatan'),
-(12, 4, 4, 'PT Lippo General Insurance Tbk', 'Jakarta Raya', 'Januari', 2004, 'Mei', 2016, 'Berpenampilan baik. Memiliki kemampuan komunikasi yang baik. Memiliki motivasi yang tinggi.'),
-(13, 1, 1, 'PT.Kayu Lapis', 'Semarang', 'Mei', 2004, 'Mei', 2016, 'Mendapat banyak pengetahuan yang baru.'),
-(14, 2, 2, 'PT.Transcosmos Indonesia', 'Jakarta', 'April', 2003, 'Januari', 2015, 'mendapat banyak pengalaman yang baru');
-
 -- --------------------------------------------------------
 
 --
@@ -212,16 +200,6 @@ CREATE TABLE `riwayat_pendidikan` (
   `thn_lulus` int(4) NOT NULL,
   `grade` varchar(50) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=latin1;
-
---
--- Dumping data for table `riwayat_pendidikan`
---
-
-INSERT INTO `riwayat_pendidikan` (`idriwayat_pendidikan`, `idpencaker`, `idtingkat_pendidikan`, `jurusan`, `bln_masuk`, `thn_masuk`, `bln_lulus`, `thn_lulus`, `grade`) VALUES
-(4098, 2, 2, 'Informatika', 'Januari', 2003, 'Mei', 2015, 'Kuliah'),
-(5423, 3, 3, 'Informatika', 'Januari', 2003, 'Mei', 2015, 'kuliah'),
-(6320, 4, 4, 'Informatika', 'Januari', 2004, 'Mei', 2016, 'Kuliah'),
-(6501, 1, 1, 'Informatika', 'Januari', 2003, 'Mei', 2015, 'kuliah');
 
 -- --------------------------------------------------------
 
@@ -310,13 +288,13 @@ ALTER TABLE `tingkat_pendidikan`
 -- AUTO_INCREMENT for table `apply_loker`
 --
 ALTER TABLE `apply_loker`
-  MODIFY `idapply` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `idapply` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `bidang_pekerjaan`
 --
 ALTER TABLE `bidang_pekerjaan`
-  MODIFY `idbidang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `idbidang` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `loker`
@@ -334,19 +312,19 @@ ALTER TABLE `pencaker`
 -- AUTO_INCREMENT for table `perusahaan`
 --
 ALTER TABLE `perusahaan`
-  MODIFY `idperusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
+  MODIFY `idperusahaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
 
 --
 -- AUTO_INCREMENT for table `riwayat_pekerjaan`
 --
 ALTER TABLE `riwayat_pekerjaan`
-  MODIFY `idriwayat_pekerjaan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=84084;
+  MODIFY `idriwayat_pekerjaan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `riwayat_pendidikan`
 --
 ALTER TABLE `riwayat_pendidikan`
-  MODIFY `idriwayat_pendidikan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6502;
+  MODIFY `idriwayat_pendidikan` int(11) NOT NULL AUTO_INCREMENT;
 
 --
 -- AUTO_INCREMENT for table `tingkat_pendidikan`

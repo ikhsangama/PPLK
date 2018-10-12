@@ -34,33 +34,40 @@ require_once "template/header.php"
             <table class="highlight">
               <tbody>
                 <tr>
-                  <td>Nama :</td>
+                  <td>Nama</td>
+                  <td>:</td>
                   <td><?php echo $perusahaan_data['nama'] ?></td>
                 </tr>
                 <tr>
-                  <td>Nama Pemilik :</td>
+                  <td>Nama Pemilik</td>
+                  <td>:</td>
                   <td><?php echo $perusahaan_data['nama_pemilik'] ?></td>
                 </tr>
                 <tr>
-                  <td>Alamat :</td>
+                  <td>Alamat</td>
+                  <td>:</td>
                   <td><?php echo $perusahaan_data['alamat'] ?></td>
                 </tr>
                 <tr>
-                  <td>Kota :</td>
+                  <td>Kota</td>
+                  <td>:</td>
                   <td><?php echo $perusahaan_data['kota'] ?><br>
                     <a href="https://www.google.com/maps/search/<?php echo $perusahaan_data['alamat'].'+'.$perusahaan_data['kota'];?>" target="_blank">lihat lokasi</a>
                   </td>
                 </tr>
                 <tr>
-                  <td>Email :</td>
+                  <td>Email</td>
+                  <td>:</td>
                   <td><?php echo $perusahaan_data['email'] ?></td>
                 </tr>
                 <tr>
-                  <td>Nomor Telepon :</td>
+                  <td>Nomor Telepon</td>
+                  <td>:</td>
                   <td><?php echo $perusahaan_data['no_telp'] ?></td>
                 </tr>
                 <tr>
-                  <td>Tanggal Bergabung :</td>
+                  <td>Tanggal Bergabung</td>
+                  <td>:</td>
                   <td><?php echo $perusahaan_data['tgl_daftar'] ?></td>
                 </tr>
               </tbody>

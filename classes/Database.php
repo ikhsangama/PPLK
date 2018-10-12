@@ -116,11 +116,11 @@ class Database
     return $this->mysqli->real_escape_string($name);
   }
 
-  public function get_table($table, $column="")
+  public function get_table($table, $where="", $id="")
   {
-    if($column!="")
+    if($where!="" and $id!="")
     {
-      $query = "SELECT $column FROM $table";
+      $query = "SELECT * FROM $table WHERE $where=$id";
     } else
     {
       $query = "SELECT * FROM $table";

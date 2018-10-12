@@ -24,6 +24,11 @@ $bidang_pekerjaan_data = $bidang_pekerjaan->get_data($loker_data['idbidang']);
 $tingkat_pendidikan_data = $tingkat_pendidikan->get_data($loker_data['idtingkat_pendidikan']);
 
 $apply_loker_table = $apply_loker->get_table_applyloker_pencaker('idloker', Input::get('idloker'));
+if($loker_data['idperusahaan']!=$perusahaan_data['idperusahaan']){
+  Session::flash('peringatan', 'Tidak dapat membuka loker diluar perusahaan anda');
+
+  Redirect::to('data_lowongan');
+}
 // while($row = mysqli_fetch_array($apply_loker_table))
 // {
 //   printf($row['nama']);
@@ -44,7 +49,7 @@ require_once "template/header.php"
       <div class="card-panel z-depth-0">
         <!-- Operasi Owner-->
         <div class="right-align">
-          <?php if ($loker_data['idperusahaan']==$perusahaan_data['idperusahaan']) {?>
+          <?php if ($loker_data['idperusahaan']!=$perusahaan_data['idperusahaan']) {?>
             <a class='dropdown-trigger btn right-align' href='#' data-target='dropdownLowongan'><i class="material-icons left">build</i>
               Operasi
             </a>
@@ -53,7 +58,7 @@ require_once "template/header.php"
                 Edit</a>
               </li>
               <li class="divider" tabindex="-1"></li>
-              <li><a href='edit_data_lowongan.php?idloker=<?php echo $loker_data['idloker'] ?>'><i class="material-icons left">clear</i>
+              <li><a href='hapus_data_lowongan.php?idloker=<?php echo $loker_data['idloker'] ?>'><i class="material-icons left">clear</i>
               Hapus</a></li>
             </ul>
           <?php } ?>
@@ -61,7 +66,8 @@ require_once "template/header.php"
         <!-- .Operasi Owner-->
         <div class="center-align">
           <h2><?php echo $loker_data['nama']; ?></h2>
-          <h5><?php echo $perusahaan_data['nama']; ?>?variable?</h5>
+          <!-- <h5><?php echo $perusahaan_data['nama']; ?>?variable?</h5> -->
+          <h5><?php echo $perusahaan_data['nama']; ?></h5>
         </div>
         <ul class="tabs tabs-fixed-width">
           <li class="tab"><a class="active" href="#lowo">Detail Lowongan Kerja</a></li>
@@ -76,7 +82,7 @@ require_once "template/header.php"
         <!-- Tab Lowongan -->
         <div class="" id="lowo">
           <div class="row">
-            <div class="col l6 s12">
+            <div class="col s4">
               <div class="card-panel z-depth-1 hoverable">
                 <h4>Deskripsi Lowongan</h4>
                 <div class="divider"></div>
@@ -85,37 +91,44 @@ require_once "template/header.php"
                 </div>
               </div>
             </div>
-            <div class="col l6 s12">
+            <div class="col s8">
               <div class="card-panel">
                 <h4>Informasi Perusahaan</h4>
                 <div class="divider"></div>
                 <div class="section">
-                  <table>
+                  <table class="table-responsive">
                     <tr>
-                      <td>Nama Perusahaan : </td>
-                      <td><?php echo $perusahaan_data['nama'];?>?variable?</td>
+                      <td>Nama Perusahaan</td>
+                      <td>:</td>
+                      <!-- <td><?php echo $perusahaan_data['nama'];?>?variable?</td> -->
+                      <td><?php echo $perusahaan_data['nama'];?></td>
                     </tr>
                     <tr>
-                      <td>Kontak Nama : </td>
+                      <td>Kontak Nama</td>
+                      <td>:</td>
                       <td><?php echo $loker_data['nama_cp']; ?></td>
                     </tr>
                     <tr>
-                      <td>Nomor Telepon : </td>
+                      <td>Nomor Telepon</td>
+                      <td>:</td>
                       <td><?php echo $loker_data['no_telp_cp'];?></td>
                     </tr>
                     <tr>
-                      <td>Email : </td>
+                      <td>Email</td>
+                      <td>:</td>
                       <td><?php echo $loker_data['email_cp']; ?></td>
                     </tr>
                     <tr>
-                      <td>Alamat : </td>
+                      <td>Alamat</td>
+                      <td>:</td>
                       <td><?php echo $perusahaan_data['alamat'];?>?variable?<br>
                           <?php echo $perusahaan_data['kota'];?>?variable?<br>
                           <a href="https://www.google.com/maps/search/<?php echo $perusahaan_data['alamat'].'+'.$perusahaan_data['kota'];?>" target="_blank">lihat lokasi</a>
                       </td>
                     </tr>
                     <tr>
-                      <td>Tanggal Bergabung : </td>
+                      <td>Tanggal Bergabung</td>
+                      <td>:</td>
                       <td><?php echo $perusahaan_data['tgl_daftar']?>?variable?</td>
                     </tr>
                   </table>
@@ -127,23 +140,28 @@ require_once "template/header.php"
                 <div class="section">
                   <table>
                     <tr>
-                      <td>Bidang : </td>
+                      <td>Bidang</td>
+                      <td>:</td>
                       <td><?php echo $bidang_pekerjaan_data['nama'];?></td>
                     </tr>
                     <tr>
-                      <td>Pendidikan : </td>
+                      <td>Pendidikan</td>
+                      <td>:</td>
                       <td><?php echo $tingkat_pendidikan_data['keterangan']?></td>
                     </tr>
                     <tr>
-                      <td>Tipe : </td>
+                      <td>Tipe</td>
+                      <td>:</td>
                       <td><?php echo $loker_data['tipe'];?></td>
                     </tr>
                     <tr>
-                      <td>Usia :</td>
+                      <td>Usia</td>
+                      <td>:</td>
                       <td><?php echo $loker_data['usia_min'].' - '.$loker_data['usia_max'];?> Tahun</td>
                     </tr>
                     <tr>
-                      <td>Gaji : </td>
+                      <td>Gaji</td>
+                      <td>:</td>
                       <td><?php echo $loker_data['gaji_min'].'-'.$loker_data['gaji_max'];?> IDR</td>
                     </tr>
                     <tr>
@@ -168,7 +186,7 @@ require_once "template/header.php"
         <!-- Tab Pelamar -->
         <div class="" id="penca">
           <div class="row">
-            <div class="col l12 s12">
+            <div class="col s12">
               <div class="card-panel">
                 <h4>Daftar Pelamar</h4>
                 <div class="divider"></div>

@@ -59,7 +59,7 @@ class Perusahaan
     else return false;
   }
 
-  public function get_data($email)
+  public function get_data_email($email)
   {
     if($this->check_email($email))
     {
@@ -68,6 +68,11 @@ class Perusahaan
     {
       return die('Nama user tidak terdaftar');
     }
+  }
+
+  public function get_data($id)
+  {
+    return $this->_db->get_info('perusahaan','idperusahaan', $id);
   }
 }
 
