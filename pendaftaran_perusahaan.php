@@ -101,9 +101,21 @@ require_once "template/header.php";
       <div class="card-panel">
       <h3>Daftar Penyedia Lowongan Kerja disini</h3>
       <div class="divider"></div>
+        <!--MENAMPILKAN ERROR  -->
+        <?php if(!empty($errors)) { ?>
+          <div id="errors">
+            <?php foreach($errors as $error){ ?>
+              <li><?php echo $error ?></li>
+            <?php } ?>
+          </div>
+        <?php } ?>
+        <!--.MENAMPILKAN ERROR  -->
+      <div class="divider"></div>
+      <!-- javascript validator-->
       <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
       <script src="assets/js/validation.js"></script>
       <script src="assets/js/formhelper.js"></script>
+      <!-- .javascript validator-->
 
       <form class="section" id="formdaftar" action="pendaftaran_perusahaan.php" method="post">
         <div class="input-field">

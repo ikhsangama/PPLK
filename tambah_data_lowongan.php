@@ -113,7 +113,13 @@ require_once "template/header.php"
         <!--.MENAMPILKAN ERROR  -->
         <div class="divider"></div>
 
-        <form class="section" action="tambah_data_lowongan.php" method="post">
+        <!-- javascript validator-->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+        <script src="assets/js/validation.js"></script>
+        <script src="assets/js/formhelper.js"></script>
+        <!-- .javascript validator-->
+
+        <form class="section" id="formTambahLowongan" action="tambah_data_lowongan.php" method="post">
           <div class="row">
             <div class="input-field col s12">
               <label for="nama_perusahaan">Nama Perusahaan</label>
@@ -130,7 +136,7 @@ require_once "template/header.php"
           </div>
           <div class="row">
             <div class="input-field col s6">
-              <select name="idbidang" id="idbidang">
+              <select name="idbidang" id="idbidang" required>
                 <option value="" disabled selected>Pilih</option>
               <?php while($row = mysqli_fetch_array($bidang_pekerjaan_table)){ ?>
                 <option value=<?php echo $row['idbidang'] ?>><?php echo $row['nama'] ?></option>
@@ -140,7 +146,7 @@ require_once "template/header.php"
               <span class="helper-text main" data-error="" data-success=""></span>
             </div>
             <div class="input-field col s6">
-              <select name="idtingkat_pendidikan" id="idtingkat_pendidikan">
+              <select name="idtingkat_pendidikan" id="idtingkat_pendidikan" required>
                 <option value="" disabled selected>Pilih</option>
               <?php while($row = mysqli_fetch_array($tingkat_pendidikan_table)){ ?>
                 <option value=<?php echo $row['idtingkat_pendidikan'] ?>><?php echo $row['keterangan'] ?></option>
@@ -229,13 +235,16 @@ require_once "template/header.php"
 <!--.KONTEN  -->
 <script>
   M.AutoInit();
+  var error=<?php echo json_encode($errors);?>;
   $(document).ready(function(){
-
+    var today = new Date();
     $('.datepicker').datepicker({
-      format: 'yyyy-mm-dd'
+      format: 'yyyy-mm-dd',
+      minDate: today
     });
-    $('select').material_select();
-
+    $('select').formSelect();
+    $('#formTambahLowongan').validate();
+    setHelper(error);
   });
 </script>
 <!--FOOTER  -->

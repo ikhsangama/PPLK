@@ -90,8 +90,12 @@ require_once "template/header.php"
           <?php } ?>
           <!--.MENAMPILKAN ERROR  -->
         <div class="divider"></div>
-
-        <form class="section" action="edit_profil.php" method="post">
+        <!-- javascript validator-->
+        <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/jquery-validation@1.17.0/dist/jquery.validate.min.js"></script>
+        <script src="assets/js/validation.js"></script>
+        <script src="assets/js/formhelper.js"></script>
+        <!-- .javascript validator-->
+        <form class="section" id="formEditProfil" action="edit_profil.php" method="post">
           <div class="input-field">
             <label for="nama">Nama</label>
             <input id="nama" name="nama" type="text" value="<?php echo $perusahaan_data['nama'] ?>">
@@ -138,6 +142,17 @@ require_once "template/header.php"
     </div>
   </div>
 </div>
+<script type="text/javascript">
+//MENGEMBALIKAN ERROR DARI SERVER
+ //Mengambil error report dari class validation
+ //Lalu meletakan error report pada tiap input yang salah
+ var error=<?php echo json_encode($errors); ?>;
+ console.log(error);
+$(document).ready(function(){
+    setHelper(error);//fungsi menaruh error dari server pada helper form input yg bersangkutan
+    $('#formEditProfil').validate();//fungsi menaruh validasi inputan user pada form input
+});
+</script>
 </main>
 <!--.KONTEN  -->
 
