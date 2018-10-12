@@ -56,7 +56,9 @@ if(Input::get('status'))
 //Riwayat Pendidikan
 $riwayatpendidikan = new RiwayatPendidikan();
 $riwayatpendidikan_table = $riwayatpendidikan->get_table('idpencaker', $apply_loker_data['idpencaker']);
-
+// Riwayat Pekerjaan
+$riwayatpekerjaan = new RiwayatPekerjaan();
+$riwayatpekerjaan_table = $riwayatpekerjaan->get_table('idpencaker', $apply_loker_data['idpencaker']);
 
 // $perusahaan_data = $perusahaan->get_data(Session::getSession('perusahaan')); dipindah ke init
 require_once "template/header.php"
@@ -177,13 +179,23 @@ require_once "template/header.php"
                   <?php echo $row['jurusan'] ?></h5>
                 <h6><?php echo $row['bln_masuk'] ?> <?php echo $row['thn_masuk'] ?> -
                   <?php echo $row['bln_lulus'] ?> <?php echo $row['thn_lulus'] ?></h6>
+                <span>IPK <?php echo $row['grade'] ?></span>
               <div class="divider"></div>
             <?php } ?>
             </div>
           </li>
           <li>
             <div class="collapsible-header"><i class="material-icons">whatshot</i>Riwayat Pekerjaan</div>
-            <div class="collapsible-body"><span>Lorem ipsum dolor sit amet.</span></div>
+            <div class="collapsible-body">
+              <?php while($row = mysqli_fetch_array($riwayatpekerjaan_table)){ ?>
+                <h5><?php echo $bidang_pekerjaan->get_data($row['idbidang'])['nama'] ?>
+                  <?php echo $row['perusahaan'] ?></h5>
+                <h6><?php echo $row['bln_masuk'] ?> <?php echo $row['thn_masuk'] ?> -
+                  <?php echo $row['bln_lulus'] ?> <?php echo $row['thn_lulus'] ?></h6>
+                <blockquote> <?php echo $row['deskripsi_pekerjaan'] ?></blockquote>
+              <div class="divider"></div>
+              <?php } ?>
+            </div>
           </li>
         </ul>
       </div>
