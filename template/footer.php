@@ -1,18 +1,14 @@
 
-    <footer class="page-footer">
-      Ini footer PBP Tema ke-5
-    </footer>
+<footer class="page-footer">
 
-    <script>
-      M.AutoInit();
-      $(document).ready(function(){
-
-        $('.datepicker').datepicker({
-          format: 'yyyy-mm-dd'
-        });
-        $('select').material_select();
-
-      });
-    </script>
+  <div class="footer-copyright">
+    <div class="container">
+    © 2018 PBP
+    </div>
+  </div>
+</footer>
   </body>
+  <script type="text/javascript">
+    M.AutoInit();
+  </script>
 </html>

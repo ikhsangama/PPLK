@@ -24,11 +24,58 @@ require_once "template/header.php"
 
 <!--KONTEN  -->
 <main>
-<div class="container">
-  <h2>Hai <?php echo $perusahaan_data['nama'] ?></h2>
-  <hr><hr><br>
-
-</div>
+  <div class="container">
+    <div class="row">
+      <div class="col l12 m12 s12 ">
+        <div class="card-panel">
+          <h3>Profil <?php echo $perusahaan_data['nama'] ?></h3>
+          <div class="divider"></div>
+          <div class="section">
+            <table class="highlight">
+              <tbody>
+                <tr>
+                  <td>Nama :</td>
+                  <td><?php echo $perusahaan_data['nama'] ?></td>
+                </tr>
+                <tr>
+                  <td>Nama Pemilik :</td>
+                  <td><?php echo $perusahaan_data['nama_pemilik'] ?></td>
+                </tr>
+                <tr>
+                  <td>Alamat :</td>
+                  <td><?php echo $perusahaan_data['alamat'] ?></td>
+                </tr>
+                <tr>
+                  <td>Kota :</td>
+                  <td><?php echo $perusahaan_data['kota'] ?><br>
+                    <a href="https://www.google.com/maps/search/<?php echo $perusahaan_data['alamat'].'+'.$perusahaan_data['kota'];?>" target="_blank">lihat lokasi</a>
+                  </td>
+                </tr>
+                <tr>
+                  <td>Email :</td>
+                  <td><?php echo $perusahaan_data['email'] ?></td>
+                </tr>
+                <tr>
+                  <td>Nomor Telepon :</td>
+                  <td><?php echo $perusahaan_data['no_telp'] ?></td>
+                </tr>
+                <tr>
+                  <td>Tanggal Bergabung :</td>
+                  <td><?php echo $perusahaan_data['tgl_daftar'] ?></td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+          <a href="edit_profil.php">
+            <button class="btn waves-effect waves-light" type="submit" >
+              Edit Profil
+              <i class="material-icons right">send</i>
+            </button>
+          </a>
+        </div>
+      </div>
+    </div>
+  </div>
 </main>
 <!--.KONTEN  -->
 

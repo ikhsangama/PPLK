@@ -21,9 +21,18 @@
             <ul class="right hide-on-med-and-down">
               <?php if(Session::isOn('perusahaan')){?>
               <li><a href="data_lowongan.php">Data Lowongan</a></li>
-              <li><a href="edit_profil.php">Edit Profil</a></li>
-              <li><a href="profil.php"><?php echo $perusahaan_data['nama'] ?></a></li>
-              <li><a href="keluar.php">Keluar</a></li>
+              <!-- Dropdown Trigger -->
+              <li><a class="dropdown-trigger" href="#!" data-target="dropdown1"><?php echo $perusahaan_data['nama'] ?><i class="material-icons right">arrow_drop_down</i></a></li>
+              <!-- .Dropdown Trigger-->
+              <!-- Dropdown Structure -->
+              <ul id='dropdown1' class='dropdown-content'>
+                <li><a href="profil.php"><i class="material-icons">account_circle</i>Profil</a></li>
+                <li class="divider" tabindex="-1"></li>
+                <li><a href="edit_profil.php"><i class="material-icons">recent_actors</i>Edit Profil</a></li>
+                <li><a href="ganti_password.php"><i class="material-icons">lock_outline</i>Ganti password</a></li>
+                <li><a href="keluar.php"><i class="material-icons">power_settings_new</i>Keluar</a></li>
+              </ul>
+              <!-- .Dropdown Structure -->
               <?php } else {?>
               <li><a href="pendaftaran_pencaker.php">Pendaftaran Pencaker</a></li>
               <li><a href="pendaftaran_perusahaan.php">Pendaftaran Perusahaan</a></li>
@@ -35,7 +44,7 @@
 
         <ul class="sidenav" id="mobile-demo">
           <?php if(Session::isOn('perusahaan')){ ?>
-          <li><a href="profil.php">Profil</a></li>
+          <li><a href="profil.php"><i class="material-icons">account_circle</i>Profil</a></li>
           <li><a href="keluar.php">Keluar</a></li>
           <?php } else {?>
           <li><a href="masuk.php">Masuk</a></li>
@@ -47,5 +56,14 @@
 <script type="text/javascript">
 $(document).ready(function(){
   $('.sidenav').sidenav();
+  $('.dropdown-trigger').dropdown({
+    constrainWidth: false,
+    coverTrigger: false,
+  });
+  //SCRIPT UNTUK MENGHILANGKAN PANEL NOTIFIKASI
+$(document).on('click','#alert_close',function(){
+  $( "#alert_panel" ).fadeOut( "slow", function() {
+  });
+});
 });
 </script>
